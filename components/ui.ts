@@ -1,4 +1,4 @@
-/** Shared Tailwind class strings — calm B&W / zinc palette */
+/** Shared Tailwind class strings: calm B&W / zinc palette */
 export const ui = {
   page:
     "min-h-screen bg-zinc-50 px-4 py-8 pb-16 sm:px-6 sm:py-10 lg:px-8 lg:py-12 print:min-h-0 print:p-0",
@@ -25,9 +25,6 @@ export const ui = {
     "flex cursor-pointer items-start gap-2.5 rounded-[2px] border border-zinc-200 px-2.5 py-2 hover:border-zinc-300",
   radioInput: "mt-0.5 accent-zinc-950",
   radioText: "text-[0.9375rem] leading-snug text-zinc-950",
-  toggleRow:
-    "flex items-center justify-between gap-4 rounded-[2px] border border-zinc-200 px-3.5 py-3",
-  toggleInput: "size-4 accent-zinc-950",
   errorBox:
     "mb-4 rounded-[2px] border border-zinc-300 bg-zinc-100 px-4 py-3.5 text-sm leading-normal text-zinc-950",
   actions: "mt-6 flex flex-wrap items-center gap-2.5 print:hidden",
@@ -55,4 +52,21 @@ export const ui = {
   warnings:
     "mt-4 border-l-2 border-zinc-300 pl-3.5 text-sm leading-normal text-zinc-500 [&_ul]:mt-1.5 [&_ul]:pl-4",
   copyFeedback: "self-center text-[0.8125rem] text-zinc-500",
+  progressTrack:
+    "h-1 w-full overflow-hidden rounded-full bg-zinc-200",
+  progressFill:
+    "h-full rounded-full bg-zinc-950 transition-[width] duration-500 ease-out motion-reduce:transition-none",
+  progressSteps: "m-0 list-none space-y-3 p-0",
+  progressStepRow: "flex items-start gap-3 text-[0.9375rem] leading-snug",
+  progressStepDone: "text-zinc-950",
+  progressStepPending: "text-zinc-400",
+  progressStepActive: "font-medium text-zinc-950",
+  progressMark:
+    "mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full border border-zinc-300 bg-white text-[0.65rem] font-semibold text-zinc-950",
+  progressMarkDone:
+    "border-zinc-950 bg-zinc-950 text-white",
+  progressMarkActive:
+    "border-zinc-950 bg-zinc-50",
+  progressSpinner:
+    "size-3.5 animate-spin rounded-full border-2 border-zinc-300 border-t-zinc-950 motion-reduce:animate-none",
 } as const;

@@ -1,6 +1,6 @@
 export type Goal = "fat_loss" | "recomposition" | "muscle_gain";
 
-export type MealPreference = 3 | 4 | 5 | "recommend";
+export type MealPreference = 2 | 3 | 4 | 5;
 
 export type TrainingTime =
   | "early_morning"
@@ -9,12 +9,8 @@ export type TrainingTime =
   | "evening"
   | "rest_day";
 
-export type TrainingType =
-  | "lower_body"
-  | "upper_body"
-  | "full_body"
-  | "cardio"
-  | "rest_day";
+/** Training today vs rest; drives pre/post structure and clock inputs. */
+export type TrainingDay = "training" | "rest_day";
 
 /** Relative position of each meal for timing and macro emphasis */
 export type MealRole =
@@ -30,9 +26,9 @@ export interface UserInputs {
   dailyCarbsG: number;
   dailyFatsG: number;
   mealPreference: MealPreference;
-  trainingTime: TrainingTime;
-  trainingType: TrainingType;
-  keepItSimple: boolean;
+  /** Minutes from midnight (0 to 1439). Null on rest day. */
+  trainingStartMinutes: number | null;
+  trainingDay: TrainingDay;
 }
 
 export interface MealSlot {
@@ -43,6 +39,8 @@ export interface MealSlot {
   carbsG: number;
   fatsG: number;
   sampleStructure: string;
+  /** Approximate clock window for this meal */
+  approximateWindow: string;
 }
 
 export interface PlanSummary {
@@ -51,15 +49,15 @@ export interface PlanSummary {
   carbsG: number;
   fatsG: number;
   mealCount: number;
-  trainingTimeLabel: string;
+  /** e.g. "Around 6:30 PM" or "Rest day" */
+  trainingClockSummary: string;
   goalLabel: string;
-  trainingTypeLabel: string;
+  trainingDayLabel: string;
 }
 
 export interface NutritionPlan {
   summary: PlanSummary;
   isRestDay: boolean;
-  keepItSimple: boolean;
   mealTimingLines: string[];
   proteinGuidance: string;
   carbGuidance: string;

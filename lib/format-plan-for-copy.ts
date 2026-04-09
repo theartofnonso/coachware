@@ -3,41 +3,40 @@ import type { NutritionPlan } from "@/types/nutrition";
 export function formatPlanForCopy(plan: NutritionPlan): string {
   const s = plan.summary;
   const lines: string[] = [
-    "Daily structure summary",
-    "—",
+    "Your day at a glance",
     `Calories: ${s.dailyCalories}`,
     `Protein: ${s.proteinG} g | Carbs: ${s.carbsG} g | Fats: ${s.fatsG} g`,
     `Meals: ${s.mealCount}`,
     `Goal: ${s.goalLabel}`,
-    `Training: ${s.trainingTypeLabel} · ${s.trainingTimeLabel}`,
+    `Today: ${s.trainingDayLabel}, ${s.trainingClockSummary}`,
     "",
-    "Meal timing",
+    "How to pace your meals",
     ...plan.mealTimingLines.map((l) => `• ${l}`),
     "",
-    "Protein",
+    "Rough meal times",
+    ...plan.meals.map((m) => `• ${m.displayLabel}: ${m.approximateWindow}`),
+    "",
+    "Protein per meal",
     plan.proteinGuidance,
+    ...plan.meals.map((m) => `• ${m.displayLabel}: ${m.proteinG} g`),
     "",
-    "Carbs",
+    "Carbs per meal",
     plan.carbGuidance,
+    ...plan.meals.map((m) => `• ${m.displayLabel}: ${m.carbsG} g`),
     "",
-    "Fats",
+    "Fats per meal",
     plan.fatGuidance,
+    ...plan.meals.map((m) => `• ${m.displayLabel}: ${m.fatsG} g`),
     "",
-    "Per-meal targets",
-    ...plan.meals.map(
-      (m) =>
-        `${m.displayLabel}: ${m.proteinG} g P · ${m.carbsG} g C · ${m.fatsG} g F`,
-    ),
+    "What a plate could look like",
+    ...plan.meals.map((m) => `• ${m.displayLabel}: ${m.sampleStructure}`),
     "",
-    "Sample structure",
-    ...plan.meals.map((m) => `${m.displayLabel}: ${m.sampleStructure}`),
-    "",
-    "Coaching note",
+    "Why we set it up this way",
     plan.coachingNote,
   ];
 
   if (plan.warnings.length > 0) {
-    lines.push("", "Heads-up", ...plan.warnings.map((w) => `• ${w}`));
+    lines.push("", "Worth knowing", ...plan.warnings.map((w) => `• ${w}`));
   }
 
   return lines.join("\n");

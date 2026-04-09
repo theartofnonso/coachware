@@ -1,86 +1,77 @@
-import type { MealRole, TrainingTime, TrainingType } from "@/types/nutrition";
+import type { MealRole, TrainingTime } from "@/types/nutrition";
+import { formatAroundTime } from "@/lib/training-clock";
 
 export function buildMealTimingLines(
   trainingTime: TrainingTime,
-  trainingType: TrainingType,
   roles: MealRole[],
   isRestDay: boolean,
-  keepItSimple: boolean,
+  trainingStartMinutes: number | null,
 ): string[] {
   if (isRestDay) {
-    return keepItSimple
-      ? [
-          "Space meals evenly so hunger stays predictable.",
-          "Keep protein steady across the day.",
-        ]
-      : [
-          "On a rest day, skip workout windows and aim for evenly spaced meals.",
-          "Spread protein fairly evenly — it makes adherence easier than chasing perfect timing.",
-          "Carbs can sit more evenly across meals since performance timing matters less today.",
-        ];
+    return [
+      "Rest day: forget workout windows and just space meals so you are not starving or stuffed.",
+      "Keep protein fairly steady across the day. Simple usually sticks better than perfect timing.",
+      "Carbs can spread out. Today is more about rhythm than performance.",
+    ];
   }
 
   const hasPre = roles.includes("pre_workout");
   const hasPost = roles.includes("post_workout");
-  const typeHint =
-    trainingType === "cardio"
-      ? "conditioning"
-      : trainingType === "lower_body"
-        ? "lower-body"
-        : trainingType === "upper_body"
-          ? "upper-body"
-          : trainingType === "full_body"
-            ? "full-body"
-            : "training";
+  const onlyPrePost =
+    roles.length === 2 &&
+    hasPre &&
+    hasPost &&
+    !roles.includes("other");
 
   const lines: string[] = [];
+
+  if (trainingStartMinutes !== null) {
+    const t = formatAroundTime(trainingStartMinutes);
+    lines.push(
+      `You said around ${t} for training. The times below are a sketch, not a stopwatch.`,
+    );
+  }
 
   switch (trainingTime) {
     case "early_morning":
       lines.push(
-        keepItSimple
-          ? "Optional small bite before training; prioritize food after."
-          : "If you train very early, a small pre-training snack is optional — many people do well with coffee or water and a strong post-training meal.",
+        "Very early? A small bite beforehand is optional. Plenty of people run on coffee or water and eat properly after.",
       );
       if (hasPost) {
         lines.push(
-          keepItSimple
-            ? "Eat your biggest carb meal after training."
-            : "Place your most carb-forward meal in the hours after training to recover from your session.",
+          "Afterwards, let your biggest carb meal land when you can sit down and refuel.",
         );
       }
       break;
     case "late_morning":
     case "afternoon":
       lines.push(
-        keepItSimple
-          ? `Pre-training meal about 60–90 minutes before ${typeHint}.`
-          : `Aim to finish a balanced pre-training meal about 60–90 minutes before ${typeHint} so you feel fueled but not overly full.`,
+        "Try to finish a solid pre workout meal about 60 to 90 minutes before you head in, so you are fueled but not stuffed.",
       );
       if (hasPost) {
         lines.push(
-          keepItSimple
-            ? "Eat again within 1–2 hours after training."
-            : "Follow with a solid meal within about 1–2 hours after you finish — that is your recovery anchor.",
+          "Then get a real meal in within an hour or two after you finish. That one anchors recovery.",
         );
       }
-      lines.push(
-        keepItSimple
-          ? "Earlier meals: protein, vegetables, moderate carbs."
-          : "Meals further from training stay protein-rich with vegetables; carbs need not be huge there unless you prefer them.",
-      );
+      if (!onlyPrePost) {
+        lines.push(
+          "Meals away from the gym can stay protein and veg forward. Carbs do not need to be huge there unless you want them.",
+        );
+      } else {
+        lines.push(
+          "With only two meals, pack protein, carbs, and veg into both so the day still feels complete.",
+        );
+      }
       break;
     case "evening":
       lines.push(
-        keepItSimple
-          ? "Front-load protein; put more carbs near your evening session."
-          : "Earlier in the day, keep meals satisfying and protein-forward. Shift a larger share of carbs into the meals that bookend your evening session.",
+        onlyPrePost
+          ? "Two eating times today: one before you train, one after. Make both count."
+          : "Earlier eats can be satisfying and protein forward. Save a bigger share of carbs for the meals that hug your evening session.",
       );
       if (hasPre && hasPost) {
         lines.push(
-          keepItSimple
-            ? "Pre-training: lighter fats. Post-training: carbs + protein."
-            : "Pre-training, favor lean protein and carbs with lighter fats. Post-training, pair protein with a fuller carb portion.",
+          "Before training, lean protein and carbs with lighter fat usually sit better. After, add a fuller carb portion with your protein.",
         );
       }
       break;
@@ -88,11 +79,9 @@ export function buildMealTimingLines(
       break;
   }
 
-  if (!keepItSimple && !isRestDay) {
-    lines.push(
-      "You do not need minute-perfect timing — consistency beats perfection.",
-    );
-  }
+  lines.push(
+    "Close enough is good enough. Showing up consistently matters more than nailing the clock.",
+  );
 
   return lines;
 }

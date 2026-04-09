@@ -18,7 +18,7 @@ export function validateInputs(input: UserInputs): ValidationResult {
     input.dailyCalories > MAX_CALORIES
   ) {
     errors.push(
-      `Daily calories should be between ${MIN_CALORIES.toLocaleString()} and ${MAX_CALORIES.toLocaleString()} for sensible planning.`,
+      `Calories work best for us between ${MIN_CALORIES.toLocaleString()} and ${MAX_CALORIES.toLocaleString()}. Adjust if you meant something else.`,
     );
   }
 
@@ -29,7 +29,7 @@ export function validateInputs(input: UserInputs): ValidationResult {
   ] as const) {
     if (!Number.isFinite(val) || val < MIN_MACRO_G || val > MAX_MACRO_G) {
       errors.push(
-        `${name} should be a number between ${MIN_MACRO_G} and ${MAX_MACRO_G} grams.`,
+        `${name} needs to be a number between ${MIN_MACRO_G} and ${MAX_MACRO_G} grams.`,
       );
     }
   }
@@ -46,7 +46,19 @@ export function validateInputs(input: UserInputs): ValidationResult {
   const ratio = fromMacros / input.dailyCalories;
   if (ratio < 0.75 || ratio > 1.2) {
     errors.push(
-      "Your macros do not line up closely with your calorie target (protein and carbs are 4 kcal/g, fats 9 kcal/g). Adjust one side so the day adds up.",
+      "Those macros don't quite match the calories you entered (protein and carbs are 4 cal per gram, fat is 9). Nudge one side until it feels closer.",
+    );
+  }
+
+  const isRestDay = input.trainingDay === "rest_day";
+  if (
+    !isRestDay &&
+    (input.trainingStartMinutes === null ||
+      input.trainingStartMinutes < 0 ||
+      input.trainingStartMinutes > 1439)
+  ) {
+    errors.push(
+      "Pop in roughly when you train so we can sketch meal times on the clock.",
     );
   }
 
@@ -63,24 +75,24 @@ export function collectSoftWarnings(
 
   if (avgProtein < 20) {
     warnings.push(
-      "With this many meals, protein per sitting is on the low side. Fewer meals or a higher protein target may feel more satisfying.",
+      "Protein per meal is on the low side with this many sittings. Fewer meals or a higher protein target might feel better.",
     );
   }
   if (avgProtein > 55) {
     warnings.push(
-      "Protein per meal is quite high. If it feels heavy, consider an extra meal or spreading intake slightly differently.",
+      "That is a lot of protein per meal. If it feels heavy, try one more meal or spread things out a bit.",
     );
   }
 
   if (input.dailyCarbsG < 50 && !isRestDay) {
     warnings.push(
-      "Carbs are very low for a training day. You can still run this plan, but performance and recovery may feel flatter.",
+      "Carbs are pretty low for a workout day. The plan still works, but you might feel a bit flatter in training.",
     );
   }
 
   if (input.dailyCalories < 1200) {
     warnings.push(
-      "Calories are aggressive. This structure is still practical, but energy and recovery need watching.",
+      "Calories are on the sharp side. The layout still helps, just keep an eye on energy and recovery.",
     );
   }
 

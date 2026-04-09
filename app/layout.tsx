@@ -14,9 +14,9 @@ const newsreader = Newsreader({
 });
 
 export const metadata: Metadata = {
-  title: "Nutrition timing — meal structuring tool",
+  title: "Map your meals around training",
   description:
-    "Turn daily calories and macros into practical meal timing around training.",
+    "Drop in your calories and macros and get a friendly layout for when and how to eat around workouts.",
 };
 
 export default function RootLayout({

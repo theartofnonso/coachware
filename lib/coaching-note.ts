@@ -1,44 +1,41 @@
-import type { Goal, TrainingTime, TrainingType } from "@/types/nutrition";
-import { GOAL_LABELS, TRAINING_TIME_LABELS, TRAINING_TYPE_LABELS } from "@/constants/labels";
+import type { Goal, TrainingTime } from "@/types/nutrition";
+import { GOAL_LABELS, TRAINING_TIME_LABELS } from "@/constants/labels";
+import { formatAroundTime } from "@/lib/training-clock";
 
 export function buildCoachingNote(
   goal: Goal,
-  trainingTime: TrainingTime,
-  trainingType: TrainingType,
+  trainingPhase: TrainingTime,
   isRestDay: boolean,
-  keepItSimple: boolean,
+  trainingStartMinutes: number | null,
 ): string {
   const goalLabel = GOAL_LABELS[goal];
-  const timeLabel = TRAINING_TIME_LABELS[trainingTime];
-  const typeLabel = TRAINING_TYPE_LABELS[trainingType];
-
-  if (keepItSimple) {
-    if (isRestDay) {
-      return `Rest day plan for ${goalLabel.toLowerCase()}: even meals, steady protein, no workout timing — simple to repeat.`;
-    }
-    return `${goalLabel} with ${typeLabel.toLowerCase()} in the ${timeLabel.toLowerCase()}: carbs cluster around training; protein stays steady meal to meal.`;
-  }
+  const phaseLabel = TRAINING_TIME_LABELS[trainingPhase];
 
   if (isRestDay) {
-    return `For ${goalLabel.toLowerCase()} on a rest day, the priority is an even rhythm: protein spread across meals, carbs distributed without a workout window, and fats where they help you feel satisfied. That keeps recovery and appetite predictable.`;
+    return `For ${goalLabel.toLowerCase()} on a rest day, think steady rhythm: protein spread through the day, carbs without a workout story, and enough fat that meals feel satisfying. That keeps hunger and recovery kinder.`;
   }
 
   const performanceLine =
     goal === "muscle_gain"
-      ? "We leaned into carbs around your session so you have fuel for quality work and a clear recovery meal."
+      ? "We tucked extra carbs around your session so you have juice to train and something solid to land on after."
       : goal === "fat_loss"
-        ? "Carbs still hug training for how you feel in the gym, while the rest of the day stays a little leaner to support your deficit."
-        : "Carbs are biased toward training for performance, without making the whole day feel like a constant refeed.";
+        ? "Carbs still cluster near training so the gym feels okay, while the rest of the day stays a little lighter for your deficit."
+        : "Carbs lean toward your workout for performance, without making every meal a carb fest.";
 
   const timingLine =
-    trainingTime === "evening"
-      ? "Evening training means reserving carbohydrate emphasis for the meals that flank your session, while earlier eating stays protein-forward."
-      : trainingTime === "early_morning"
-        ? "Early sessions often feel best with a light optional pre-training bite and a strong post-training meal — that is where we placed carbohydrate emphasis."
-        : "Your training sits mid-day, so breakfast stays balanced, pre-training fuel sits about an hour out, and the meal after training carries recovery weight.";
+    trainingPhase === "evening"
+      ? "Evening sessions mean more carb love in the meals that wrap your workout, with steadier protein earlier."
+      : trainingPhase === "early_morning"
+        ? "Early birds often do fine with a tiny optional bite beforehand and a real meal after. That is where we stacked carbs."
+        : "Midday training means breakfast stays normal, you eat before you go in, and the meal after carries most of the recovery weight.";
+
+  const clockLine =
+    trainingStartMinutes !== null
+      ? `We penciled times around ${formatAroundTime(trainingStartMinutes)}. Slide them if your real start moves. `
+      : "";
 
   const sessionBit =
-    trainingTime === "rest_day" ? "" : ` (${timeLabel.toLowerCase()})`;
+    trainingPhase === "rest_day" ? "" : ` (${phaseLabel.toLowerCase()})`;
 
-  return `You are aiming for ${goalLabel.toLowerCase()} with ${typeLabel.toLowerCase()}${sessionBit}. ${performanceLine} ${timingLine} Protein stays evenly distributed so muscle support is steady, not dependent on one huge dinner. Small adjustments beat perfect spreadsheets — run this for a week, notice energy and hunger, then tweak portions, not the whole structure.`;
+  return `${clockLine}You told us ${goalLabel.toLowerCase()} on a training day${sessionBit}. ${performanceLine} ${timingLine} Protein stays spread out so you are not living off one giant dinner. Try this rhythm for a week, notice how you feel, then tweak portions before you rewrite the whole plan.`;
 }

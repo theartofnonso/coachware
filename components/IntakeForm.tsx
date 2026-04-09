@@ -1,7 +1,10 @@
 "use client";
 
-import type { Goal, MealPreference, TrainingTime, TrainingType } from "@/types/nutrition";
+import { GOAL_HINTS, GOAL_LABELS } from "@/constants/labels";
+import type { Goal, MealPreference, TrainingDay } from "@/types/nutrition";
 import { ui } from "@/components/ui";
+
+const GOAL_OPTIONS: Goal[] = ["fat_loss", "recomposition", "muscle_gain"];
 
 export type FormState = {
   goal: Goal;
@@ -10,9 +13,9 @@ export type FormState = {
   dailyCarbsG: string;
   dailyFatsG: string;
   mealPreference: MealPreference;
-  trainingTime: TrainingTime;
-  trainingType: TrainingType;
-  keepItSimple: boolean;
+  /** Local time "HH:MM" (24h) from the time input */
+  trainingClock: string;
+  trainingDay: TrainingDay;
 };
 
 type Props = {
@@ -22,39 +25,19 @@ type Props = {
   errors: string[];
 };
 
-const goalOptions: { value: Goal; label: string }[] = [
-  { value: "fat_loss", label: "Fat loss" },
-  { value: "recomposition", label: "Recomposition" },
-  { value: "muscle_gain", label: "Muscle gain" },
-];
-
 const mealOptions: { value: MealPreference; label: string }[] = [
-  { value: "recommend", label: "Recommend for me" },
+  { value: 2, label: "2 meals" },
   { value: 3, label: "3 meals" },
   { value: 4, label: "4 meals" },
   { value: 5, label: "5 meals" },
-];
-
-const timeOptions: { value: TrainingTime; label: string }[] = [
-  { value: "early_morning", label: "Early morning" },
-  { value: "late_morning", label: "Late morning" },
-  { value: "afternoon", label: "Afternoon" },
-  { value: "evening", label: "Evening" },
-  { value: "rest_day", label: "Rest day" },
-];
-
-const typeOptions: { value: TrainingType; label: string }[] = [
-  { value: "lower_body", label: "Lower body / glute focused" },
-  { value: "upper_body", label: "Upper body" },
-  { value: "full_body", label: "Full body" },
-  { value: "cardio", label: "Cardio / conditioning" },
-  { value: "rest_day", label: "Rest day" },
 ];
 
 export function IntakeForm({ value, onChange, onSubmit, errors }: Props) {
   function set<K extends keyof FormState>(key: K, v: FormState[K]) {
     onChange({ ...value, [key]: v });
   }
+
+  const isRestDay = value.trainingDay === "rest_day";
 
   return (
     <form
@@ -65,7 +48,7 @@ export function IntakeForm({ value, onChange, onSubmit, errors }: Props) {
     >
       {errors.length > 0 && (
         <div className={ui.errorBox} role="alert">
-          <strong>Check your inputs</strong>
+          <strong>Almost there</strong>
           <ul className="mt-1.5 list-disc pl-[1.1rem]">
             {errors.map((err) => (
               <li key={err}>{err}</li>
@@ -75,21 +58,24 @@ export function IntakeForm({ value, onChange, onSubmit, errors }: Props) {
       )}
 
       <div className={ui.card}>
-        <h2 className={ui.cardTitle}>Goal</h2>
+        <h2 className={ui.cardTitle}>What are you working toward?</h2>
         <fieldset className={ui.field}>
-          <legend className="sr-only">Goal</legend>
+          <legend className="sr-only">What are you working toward?</legend>
           <div className={ui.radioGroup}>
-            {goalOptions.map((o) => (
-              <label key={o.value} className={ui.radioRow}>
+            {GOAL_OPTIONS.map((g) => (
+              <label key={g} className={ui.radioRow}>
                 <input
                   type="radio"
                   name="goal"
-                  value={o.value}
-                  checked={value.goal === o.value}
-                  onChange={() => set("goal", o.value)}
+                  value={g}
+                  checked={value.goal === g}
+                  onChange={() => set("goal", g)}
                   className={ui.radioInput}
                 />
-                <span className={ui.radioText}>{o.label}</span>
+                <span className="flex min-w-0 flex-1 flex-col gap-0.5">
+                  <span className={ui.radioText}>{GOAL_LABELS[g]}</span>
+                  <span className={ui.hint}>{GOAL_HINTS[g]}</span>
+                </span>
               </label>
             ))}
           </div>
@@ -97,7 +83,7 @@ export function IntakeForm({ value, onChange, onSubmit, errors }: Props) {
       </div>
 
       <div className={ui.card}>
-        <h2 className={ui.cardTitle}>Daily targets</h2>
+        <h2 className={ui.cardTitle}>Your numbers for today</h2>
         <div className={ui.field}>
           <label className={ui.label} htmlFor="calories">
             Calories
@@ -152,16 +138,16 @@ export function IntakeForm({ value, onChange, onSubmit, errors }: Props) {
             onChange={(e) => set("dailyFatsG", e.target.value)}
           />
           <p className={ui.hint}>
-            Rough check: protein and carbs are 4 kcal/g, fats 9 kcal/g — your
-            totals should land near your calorie target.
+            Quick sanity check: protein and carbs are 4 calories per gram,
+            fats 9. If the math is way off your calorie target, tweak one side.
           </p>
         </div>
       </div>
 
       <div className={ui.card}>
-        <h2 className={ui.cardTitle}>Meals per day</h2>
+        <h2 className={ui.cardTitle}>How many times do you like to eat?</h2>
         <fieldset className={ui.field}>
-          <legend className="sr-only">Meals per day</legend>
+          <legend className="sr-only">How many times do you like to eat?</legend>
           <div className={ui.radioGroup}>
             {mealOptions.map((o) => (
               <label key={String(o.value)} className={ui.radioRow}>
@@ -181,71 +167,63 @@ export function IntakeForm({ value, onChange, onSubmit, errors }: Props) {
       </div>
 
       <div className={ui.card}>
-        <h2 className={ui.cardTitle}>Training</h2>
-        <div className={ui.field}>
-          <label className={ui.label} htmlFor="trainingTime">
-            When you train
-          </label>
-          <select
-            id="trainingTime"
-            className={ui.select}
-            value={value.trainingTime}
-            onChange={(e) =>
-              set("trainingTime", e.target.value as TrainingTime)
-            }
-          >
-            {timeOptions.map((o) => (
-              <option key={o.value} value={o.value}>
-                {o.label}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className={ui.field}>
-          <label className={ui.label} htmlFor="trainingType">
-            Session type
-          </label>
-          <select
-            id="trainingType"
-            className={ui.select}
-            value={value.trainingType}
-            onChange={(e) =>
-              set("trainingType", e.target.value as TrainingType)
-            }
-          >
-            {typeOptions.map((o) => (
-              <option key={o.value} value={o.value}>
-                {o.label}
-              </option>
-            ))}
-          </select>
+        <h2 className={ui.cardTitle}>Today&apos;s workout</h2>
+        <fieldset className={`${ui.field} min-w-0 border-0 p-0`}>
+          <legend className={ui.label}>What kind of day is it?</legend>
+          <div className={ui.radioGroup}>
+            <label className={ui.radioRow}>
+              <input
+                type="radio"
+                name="trainingDay"
+                value="rest_day"
+                checked={value.trainingDay === "rest_day"}
+                onChange={() => set("trainingDay", "rest_day")}
+                className={ui.radioInput}
+              />
+              <span className={ui.radioText}>Rest day</span>
+            </label>
+            <label className={ui.radioRow}>
+              <input
+                type="radio"
+                name="trainingDay"
+                value="training"
+                checked={value.trainingDay === "training"}
+                onChange={() => set("trainingDay", "training")}
+                className={ui.radioInput}
+              />
+              <span className={ui.radioText}>I&apos;m training</span>
+            </label>
+          </div>
+        </fieldset>
+        {!isRestDay && (
+          <div className={ui.field}>
+            <label className={ui.label} htmlFor="trainingClock">
+              Roughly when do you train?
+            </label>
+            <input
+              id="trainingClock"
+              type="time"
+              className={ui.input}
+              value={value.trainingClock}
+              onChange={(e) => set("trainingClock", e.target.value)}
+            />
+            <p className={ui.hint}>
+              We&apos;ll sketch meal times around this. It doesn&apos;t have to
+              be perfect, just your usual start.
+            </p>
+          </div>
+        )}
+        {isRestDay && (
           <p className={ui.hint}>
-            If either field is a rest day, we treat the day as non-training for
-            timing.
+            On a rest day we skip workout timing and spread things evenly. No
+            clock needed.
           </p>
-        </div>
-      </div>
-
-      <div className={ui.card}>
-        <h2 className={ui.cardTitle}>Mode</h2>
-        <label className={ui.toggleRow}>
-          <span className={ui.radioText}>Keep it simple</span>
-          <input
-            type="checkbox"
-            checked={value.keepItSimple}
-            onChange={(e) => set("keepItSimple", e.target.checked)}
-            aria-describedby="simple-hint"
-            className={ui.toggleInput}
-          />
-        </label>
-        <p id="simple-hint" className={ui.hint}>
-          Shorter explanations and a lighter structure — same underlying plan.
-        </p>
+        )}
       </div>
 
       <div className={ui.actions}>
         <button type="submit" className={ui.btnPrimary}>
-          Build my day
+          Show me my plan
         </button>
       </div>
     </form>

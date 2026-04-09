@@ -30,7 +30,7 @@ export function PlanResults({ plan, onEdit, onReset }: Props) {
   return (
     <div>
       <div className={ui.card}>
-        <h2 className={ui.cardTitle}>Daily structure summary</h2>
+        <h2 className={ui.cardTitle}>Your day at a glance</h2>
         <dl className={ui.summaryGrid}>
           <div>
             <dt className={ui.summaryDt}>Calories</dt>
@@ -59,17 +59,17 @@ export function PlanResults({ plan, onEdit, onReset }: Props) {
             <dd className={ui.summaryDd}>{s.goalLabel}</dd>
           </div>
           <div className="sm:col-span-2">
-            <dt className={ui.summaryDt}>Training</dt>
+            <dt className={ui.summaryDt}>Today</dt>
             <dd className={ui.summaryDd}>
-              <div>{s.trainingTypeLabel}</div>
-              <div className={ui.mutedSmall}>{s.trainingTimeLabel}</div>
+              <div>{s.trainingDayLabel}</div>
+              <div className={ui.mutedSmall}>{s.trainingClockSummary}</div>
             </dd>
           </div>
         </dl>
       </div>
 
       <div className={ui.card}>
-        <h2 className={ui.cardTitle}>Meal timing</h2>
+        <h2 className={ui.cardTitle}>How to pace your meals</h2>
         <ul className={ui.bullets}>
           {plan.mealTimingLines.map((line) => (
             <li key={line}>{line}</li>
@@ -78,7 +78,22 @@ export function PlanResults({ plan, onEdit, onReset }: Props) {
       </div>
 
       <div className={ui.card}>
-        <h2 className={ui.cardTitle}>Protein distribution</h2>
+        <h2 className={ui.cardTitle}>Rough meal times</h2>
+        <p className={`${ui.bodyText} mb-3`}>
+          Ballpark windows so you can glance at the clock and decide. Move them
+          if life happens.
+        </p>
+        <ul className={ui.bullets}>
+          {plan.meals.map((m) => (
+            <li key={m.index}>
+              <strong>{m.displayLabel}:</strong> {m.approximateWindow}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className={ui.card}>
+        <h2 className={ui.cardTitle}>Protein per meal</h2>
         <p className={ui.bodyText}>{plan.proteinGuidance}</p>
         <div className={ui.tableWrap}>
           <table className={ui.mealTable}>
@@ -88,16 +103,6 @@ export function PlanResults({ plan, onEdit, onReset }: Props) {
                 <th scope="col" className={ui.tabular}>
                   Protein
                 </th>
-                {plan.keepItSimple && (
-                  <>
-                    <th scope="col" className={ui.tabular}>
-                      Carbs
-                    </th>
-                    <th scope="col" className={ui.tabular}>
-                      Fats
-                    </th>
-                  </>
-                )}
               </tr>
             </thead>
             <tbody>
@@ -105,12 +110,6 @@ export function PlanResults({ plan, onEdit, onReset }: Props) {
                 <tr key={m.index}>
                   <td>{m.displayLabel}</td>
                   <td className={ui.tabular}>{m.proteinG} g</td>
-                  {plan.keepItSimple && (
-                    <>
-                      <td className={ui.tabular}>{m.carbsG} g</td>
-                      <td className={ui.tabular}>{m.fatsG} g</td>
-                    </>
-                  )}
                 </tr>
               ))}
             </tbody>
@@ -119,63 +118,59 @@ export function PlanResults({ plan, onEdit, onReset }: Props) {
       </div>
 
       <div className={ui.card}>
-        <h2 className={ui.cardTitle}>Carb placement</h2>
+        <h2 className={ui.cardTitle}>Carbs per meal</h2>
         <p className={ui.bodyText}>{plan.carbGuidance}</p>
-        {!plan.keepItSimple && (
-          <div className={ui.tableWrap}>
-            <table className={ui.mealTable}>
-              <thead>
-                <tr>
-                  <th scope="col">Meal</th>
-                  <th scope="col" className={ui.tabular}>
-                    Carbs
-                  </th>
+        <div className={ui.tableWrap}>
+          <table className={ui.mealTable}>
+            <thead>
+              <tr>
+                <th scope="col">Meal</th>
+                <th scope="col" className={ui.tabular}>
+                  Carbs
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {plan.meals.map((m) => (
+                <tr key={m.index}>
+                  <td>{m.displayLabel}</td>
+                  <td className={ui.tabular}>{m.carbsG} g</td>
                 </tr>
-              </thead>
-              <tbody>
-                {plan.meals.map((m) => (
-                  <tr key={m.index}>
-                    <td>{m.displayLabel}</td>
-                    <td className={ui.tabular}>{m.carbsG} g</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <div className={ui.card}>
-        <h2 className={ui.cardTitle}>Fat placement</h2>
+        <h2 className={ui.cardTitle}>Fats per meal</h2>
         <p className={ui.bodyText}>{plan.fatGuidance}</p>
-        {!plan.keepItSimple && (
-          <div className={ui.tableWrap}>
-            <table className={ui.mealTable}>
-              <thead>
-                <tr>
-                  <th scope="col">Meal</th>
-                  <th scope="col" className={ui.tabular}>
-                    Fats
-                  </th>
+        <div className={ui.tableWrap}>
+          <table className={ui.mealTable}>
+            <thead>
+              <tr>
+                <th scope="col">Meal</th>
+                <th scope="col" className={ui.tabular}>
+                  Fats
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {plan.meals.map((m) => (
+                <tr key={m.index}>
+                  <td>{m.displayLabel}</td>
+                  <td className={ui.tabular}>{m.fatsG} g</td>
                 </tr>
-              </thead>
-              <tbody>
-                {plan.meals.map((m) => (
-                  <tr key={m.index}>
-                    <td>{m.displayLabel}</td>
-                    <td className={ui.tabular}>{m.fatsG} g</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <div className={ui.card}>
-        <h2 className={ui.cardTitle}>Sample meal structure</h2>
+        <h2 className={ui.cardTitle}>What a plate could look like</h2>
         <p className={`${ui.bodyText} mb-3`}>
-          Placeholders — swap in foods you already eat.
+          Ideas, not recipes. Trade in whatever you actually keep in the house.
         </p>
         <ul className={ui.bullets}>
           {plan.meals.map((m) => (
@@ -187,11 +182,11 @@ export function PlanResults({ plan, onEdit, onReset }: Props) {
       </div>
 
       <div className={ui.card}>
-        <h2 className={ui.cardTitle}>Coaching note</h2>
+        <h2 className={ui.cardTitle}>Why we set it up this way</h2>
         <p className={ui.coachNote}>{plan.coachingNote}</p>
         {plan.warnings.length > 0 && (
           <div className={ui.warnings}>
-            <strong>Heads-up</strong>
+            <strong>Worth knowing</strong>
             <ul>
               {plan.warnings.map((w) => (
                 <li key={w}>{w}</li>
@@ -203,21 +198,21 @@ export function PlanResults({ plan, onEdit, onReset }: Props) {
 
       <div className={ui.actions}>
         <button type="button" className={ui.btnPrimary} onClick={onEdit}>
-          Edit inputs
+          Change my answers
         </button>
         <button
           type="button"
           className={ui.btnSecondary}
           onClick={handleCopy}
         >
-          Copy plan
+          Copy this plan
         </button>
         <button type="button" className={ui.btnGhost} onClick={onReset}>
-          Reset
+          Start over
         </button>
         {copied && (
           <span className={ui.copyFeedback} aria-live="polite">
-            Copied
+            Saved to clipboard
           </span>
         )}
       </div>

@@ -34,6 +34,9 @@ function earlyMorningRoles(n: number): MealRole[] {
 }
 
 function middayRoles(n: number): MealRole[] {
+  if (n === 2) {
+    return ["pre_workout", "post_workout"];
+  }
   if (n === 3) {
     return ["other", "pre_workout", "post_workout"];
   }
@@ -44,6 +47,9 @@ function middayRoles(n: number): MealRole[] {
 }
 
 function eveningRoles(n: number): MealRole[] {
+  if (n === 2) {
+    return ["pre_workout", "post_workout"];
+  }
   if (n === 3) {
     return ["other", "pre_workout", "post_workout"];
   }
@@ -68,9 +74,9 @@ export function buildMealDisplayLabel(
   }
   if (role === "pre_workout") {
     if (trainingTime === "early_morning") {
-      return `Meal ${n} — pre-training (small)`;
+      return `Meal ${n}: pre workout (small)`;
     }
-    return `Meal ${n} — pre-training`;
+    return `Meal ${n}: pre workout`;
   }
-  return `Meal ${n} — post-training`;
+  return `Meal ${n}: post workout`;
 }
