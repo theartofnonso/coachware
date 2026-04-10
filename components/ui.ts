@@ -69,4 +69,12 @@ export const ui = {
     "border-zinc-950 bg-zinc-50",
   progressSpinner:
     "size-3.5 animate-spin rounded-full border-2 border-zinc-300 border-t-zinc-950 motion-reduce:animate-none",
+  /** Prominent progression outcome headline */
+  decisionOutcome:
+    "rounded-[2px] border-2 border-zinc-950 bg-zinc-50 px-4 py-5 text-center sm:px-6",
+  decisionOutcomeText:
+    "font-serif text-xl font-semibold leading-snug tracking-[-0.02em] text-zinc-950 sm:text-2xl",
+  navLink:
+    "text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-950",
+  navLinkActive: "text-zinc-950",
 } as const;

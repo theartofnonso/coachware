@@ -1,6 +1,7 @@
 "use client";
 
 import { GOAL_HINTS, GOAL_LABELS } from "@/constants/labels";
+import { filterPositiveDecimalInput } from "@/lib/numeric-input";
 import type { Goal, MealPreference, TrainingDay } from "@/types/nutrition";
 import { ui } from "@/components/ui";
 
@@ -93,8 +94,14 @@ export function IntakeForm({ value, onChange, onSubmit, errors }: Props) {
             className={ui.input}
             inputMode="decimal"
             autoComplete="off"
+            spellCheck={false}
             value={value.dailyCalories}
-            onChange={(e) => set("dailyCalories", e.target.value)}
+            onChange={(e) =>
+              set(
+                "dailyCalories",
+                filterPositiveDecimalInput(e.target.value.replace(/,/g, "")),
+              )
+            }
           />
         </div>
         <div className={ui.grid2}>
@@ -107,8 +114,11 @@ export function IntakeForm({ value, onChange, onSubmit, errors }: Props) {
               className={ui.input}
               inputMode="decimal"
               autoComplete="off"
+              spellCheck={false}
               value={value.dailyProteinG}
-              onChange={(e) => set("dailyProteinG", e.target.value)}
+              onChange={(e) =>
+                set("dailyProteinG", filterPositiveDecimalInput(e.target.value))
+              }
             />
           </div>
           <div className={ui.field}>
@@ -120,8 +130,11 @@ export function IntakeForm({ value, onChange, onSubmit, errors }: Props) {
               className={ui.input}
               inputMode="decimal"
               autoComplete="off"
+              spellCheck={false}
               value={value.dailyCarbsG}
-              onChange={(e) => set("dailyCarbsG", e.target.value)}
+              onChange={(e) =>
+                set("dailyCarbsG", filterPositiveDecimalInput(e.target.value))
+              }
             />
           </div>
         </div>
@@ -134,8 +147,11 @@ export function IntakeForm({ value, onChange, onSubmit, errors }: Props) {
             className={ui.input}
             inputMode="decimal"
             autoComplete="off"
+            spellCheck={false}
             value={value.dailyFatsG}
-            onChange={(e) => set("dailyFatsG", e.target.value)}
+            onChange={(e) =>
+              set("dailyFatsG", filterPositiveDecimalInput(e.target.value))
+            }
           />
           <p className={ui.hint}>
             Quick sanity check: protein and carbs are 4 calories per gram,

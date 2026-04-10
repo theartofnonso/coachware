@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Newsreader } from "next/font/google";
+import { SiteNav } from "@/components/SiteNav";
 import "./globals.css";
 
 const inter = Inter({
@@ -14,9 +15,12 @@ const newsreader = Newsreader({
 });
 
 export const metadata: Metadata = {
-  title: "Map your meals around training",
+  title: {
+    default: "Coachware",
+    template: "%s · Coachware",
+  },
   description:
-    "Drop in your calories and macros and get a friendly layout for when and how to eat around workouts.",
+    "Practical tools for meal timing around training and simple weight progression using rep ranges.",
 };
 
 export default function RootLayout({
@@ -26,7 +30,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${newsreader.variable}`}>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <SiteNav />
+        {children}
+      </body>
     </html>
   );
 }
