@@ -3,8 +3,8 @@
 import type { FormEvent } from "react";
 import { useCallback, useMemo, useState } from "react";
 import { WeightProgressionGenerating } from "@/components/WeightProgressionGenerating";
+import { WeightProgressionResultsView } from "@/components/WeightProgressionResultsView";
 import { ui } from "@/components/ui";
-import { formatWeightProgressionForCopy } from "@/lib/format-weight-progression-copy";
 import { computeWeightProgressionResult } from "@/lib/weight-progression-compute";
 import {
   filterPositiveDecimalInput,
@@ -57,7 +57,6 @@ export function WeightProgressionTool() {
   const [errors, setErrors] = useState<string[]>([]);
   const [submitted, setSubmitted] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
-  const [copied, setCopied] = useState(false);
 
   const result = useMemo(() => {
     if (!submitted) {
@@ -130,20 +129,6 @@ export function WeightProgressionTool() {
     setSubmitted(false);
     setIsGenerating(false);
   }, []);
-
-  async function handleCopy() {
-    if (!result) {
-      return;
-    }
-    const text = formatWeightProgressionForCopy(result);
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 2000);
-    } catch {
-      setCopied(false);
-    }
-  }
 
   return (
     <div className={ui.page}>
@@ -373,85 +358,11 @@ export function WeightProgressionTool() {
               </div>
             </form>
           ) : (
-            <>
-              <div className={ui.card}>
-                <h2 className={ui.cardTitle}>Progression decision</h2>
-                <div className={ui.decisionOutcome}>
-                  <p className={ui.decisionOutcomeText}>
-                    {result.decisionHeadline}
-                  </p>
-                  {result.suggestedWeightLabel !== null && (
-                    <p className={`${ui.bodyText} mt-3 text-zinc-600`}>
-                      Suggested load to try:{" "}
-                      <span className="font-medium text-zinc-950">
-                        {result.suggestedWeightLabel}
-                      </span>
-                    </p>
-                  )}
-                </div>
-              </div>
-
-              <div className={ui.card}>
-                <h2 className={ui.cardTitle}>Why this decision was made</h2>
-                <div className="space-y-3">
-                  {result.whyParagraphs.map((p) => (
-                    <p key={p} className={ui.bodyText}>
-                      {p}
-                    </p>
-                  ))}
-                </div>
-              </div>
-
-              <div className={ui.card}>
-                <h2 className={ui.cardTitle}>Suggested next step</h2>
-                <p className={ui.bodyText}>{result.nextStep}</p>
-              </div>
-
-              <div className={ui.card}>
-                <h2 className={ui.cardTitle}>Example progression path</h2>
-                <ul className={ui.bullets}>
-                  {result.examplePath.map((step) => (
-                    <li key={`${step.label}-${step.detail}`}>
-                      <strong>{step.label}:</strong> {step.detail}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className={ui.card}>
-                <h2 className={ui.cardTitle}>Coaching note</h2>
-                <p className={ui.coachNote}>{result.coachingNote}</p>
-              </div>
-
-              <div className={ui.actions}>
-                <button
-                  type="button"
-                  className={ui.btnPrimary}
-                  onClick={handleEdit}
-                >
-                  Edit inputs
-                </button>
-                <button
-                  type="button"
-                  className={ui.btnSecondary}
-                  onClick={handleCopy}
-                >
-                  Copy result
-                </button>
-                <button
-                  type="button"
-                  className={ui.btnGhost}
-                  onClick={handleReset}
-                >
-                  Reset
-                </button>
-                {copied && (
-                  <span className={ui.copyFeedback} aria-live="polite">
-                    Saved to clipboard
-                  </span>
-                )}
-              </div>
-            </>
+            <WeightProgressionResultsView
+              result={result}
+              onEdit={handleEdit}
+              onReset={handleReset}
+            />
           )}
       </div>
     </div>

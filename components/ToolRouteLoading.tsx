@@ -49,7 +49,7 @@ export function ToolRouteLoading({
                 <span className={ui.progressMark}>
                   <span className="text-zinc-300">·</span>
                 </span>
-                <span className="h-4 max-w-md flex-1 rounded-sm bg-zinc-200 motion-safe:animate-pulse" />
+                <span className="h-4 max-w-md flex-1 rounded-md bg-zinc-200 motion-safe:animate-pulse" />
               </li>
             ))}
           </ul>

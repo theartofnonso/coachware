@@ -16,11 +16,11 @@ const newsreader = Newsreader({
 
 export const metadata: Metadata = {
   title: {
-    default: "Coachware",
-    template: "%s · Coachware",
+    default: "Nonso Biose",
+    template: "%s · Nonso Biose",
   },
   description:
-    "Practical tools for meal timing around training and simple weight progression using rep ranges.",
+    "Online coaching and practical tools for training, meal timing, and calorie guidance. Calm, structured, built for real life.",
 };
 
 export default function RootLayout({

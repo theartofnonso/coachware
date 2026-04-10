@@ -1,9 +1,10 @@
 "use client";
 
-import type { NutritionPlan } from "@/types/nutrition";
-import { formatPlanForCopy } from "@/lib/format-plan-for-copy";
+import { GatedToolResult } from "@/components/lead/GatedToolResult";
 import { ui } from "@/components/ui";
-import { useState } from "react";
+import { buildNutritionLeadPayload } from "@/lib/nutrition-lead-payload";
+import type { NutritionPlan } from "@/types/nutrition";
+import { useMemo } from "react";
 
 type Props = {
   plan: NutritionPlan;
@@ -11,63 +12,45 @@ type Props = {
   onReset: () => void;
 };
 
-export function PlanResults({ plan, onEdit, onReset }: Props) {
-  const [copied, setCopied] = useState(false);
-
-  async function handleCopy() {
-    const text = formatPlanForCopy(plan);
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 2000);
-    } catch {
-      setCopied(false);
-    }
-  }
-
+function PlanResultPreview({ plan }: { plan: NutritionPlan }) {
   const s = plan.summary;
-
   return (
-    <div>
-      <div className={ui.card}>
-        <h2 className={ui.cardTitle}>Your day at a glance</h2>
-        <dl className={ui.summaryGrid}>
-          <div>
-            <dt className={ui.summaryDt}>Calories</dt>
-            <dd className={ui.summaryDd}>
-              {s.dailyCalories.toLocaleString()}
-            </dd>
-          </div>
-          <div>
-            <dt className={ui.summaryDt}>Meals</dt>
-            <dd className={ui.summaryDd}>{s.mealCount}</dd>
-          </div>
-          <div>
-            <dt className={ui.summaryDt}>Protein</dt>
-            <dd className={ui.summaryDd}>{s.proteinG} g</dd>
-          </div>
-          <div>
-            <dt className={ui.summaryDt}>Carbs</dt>
-            <dd className={ui.summaryDd}>{s.carbsG} g</dd>
-          </div>
-          <div>
-            <dt className={ui.summaryDt}>Fats</dt>
-            <dd className={ui.summaryDd}>{s.fatsG} g</dd>
-          </div>
-          <div>
-            <dt className={ui.summaryDt}>Goal</dt>
-            <dd className={ui.summaryDd}>{s.goalLabel}</dd>
-          </div>
-          <div className="sm:col-span-2">
-            <dt className={ui.summaryDt}>Today</dt>
-            <dd className={ui.summaryDd}>
-              <div>{s.trainingDayLabel}</div>
-              <div className={ui.mutedSmall}>{s.trainingClockSummary}</div>
-            </dd>
-          </div>
-        </dl>
-      </div>
+    <div className={ui.card}>
+      <h2 className={ui.cardTitle}>Your day at a glance</h2>
+      <dl className={ui.summaryGrid}>
+        <div>
+          <dt className={ui.summaryDt}>Calories</dt>
+          <dd className={ui.summaryDd}>
+            {s.dailyCalories.toLocaleString()}
+          </dd>
+        </div>
+        <div>
+          <dt className={ui.summaryDt}>Meals</dt>
+          <dd className={ui.summaryDd}>{s.mealCount}</dd>
+        </div>
+        <div>
+          <dt className={ui.summaryDt}>Goal</dt>
+          <dd className={ui.summaryDd}>{s.goalLabel}</dd>
+        </div>
+        <div className="sm:col-span-2">
+          <dt className={ui.summaryDt}>Today</dt>
+          <dd className={ui.summaryDd}>
+            <div>{s.trainingDayLabel}</div>
+            <div className={ui.mutedSmall}>{s.trainingClockSummary}</div>
+          </dd>
+        </div>
+      </dl>
+      <p className={`${ui.hint} mt-4 border-t border-zinc-100 pt-4`}>
+        Protein, carbs, and fats per meal, clock windows, plate ideas, and the
+        full coaching note unlock below.
+      </p>
+    </div>
+  );
+}
 
+function PlanResultGatedBody({ plan }: { plan: NutritionPlan }) {
+  return (
+    <>
       <div className={ui.card}>
         <h2 className={ui.cardTitle}>How to pace your meals</h2>
         <ul className={ui.bullets}>
@@ -195,27 +178,31 @@ export function PlanResults({ plan, onEdit, onReset }: Props) {
           </div>
         )}
       </div>
+    </>
+  );
+}
 
-      <div className={ui.actions}>
-        <button type="button" className={ui.btnPrimary} onClick={onEdit}>
-          Change my answers
-        </button>
-        <button
-          type="button"
-          className={ui.btnSecondary}
-          onClick={handleCopy}
-        >
-          Copy this plan
-        </button>
-        <button type="button" className={ui.btnGhost} onClick={onReset}>
-          Start over
-        </button>
-        {copied && (
-          <span className={ui.copyFeedback} aria-live="polite">
-            Saved to clipboard
-          </span>
-        )}
-      </div>
-    </div>
+export function PlanResults({ plan, onEdit, onReset }: Props) {
+  const leadPayload = useMemo(() => buildNutritionLeadPayload(plan), [plan]);
+
+  return (
+    <GatedToolResult
+      toolId="nutrition-timing"
+      resultPayload={leadPayload}
+      lockedTeaser="Below you will find meal timing, macros split by meal, sample plates, and the full coaching note. Unlock to see everything in one place."
+      unlockButtonLabel="Get the full plan"
+      preview={<PlanResultPreview plan={plan} />}
+      gated={<PlanResultGatedBody plan={plan} />}
+      persistentActions={
+        <>
+          <button type="button" className={ui.btnPrimary} onClick={onEdit}>
+            Change my answers
+          </button>
+          <button type="button" className={ui.btnGhost} onClick={onReset}>
+            Start over
+          </button>
+        </>
+      }
+    />
   );
 }
