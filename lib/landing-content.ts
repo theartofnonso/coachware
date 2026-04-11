@@ -50,8 +50,8 @@ export const LANDING_OFFER = {
     },
   ],
   consultationLead:
-    "If you want to see whether we are a fit, book a short consultation. No pressure, just a clear conversation.",
-  consultationCtaLabel: "Book a consultation",
+    "I work with a small number of people who are serious about getting in shape and learning how to stay that way.",
+  consultationCtaLabel: "See if you qualify",
   /** TODO: Replace with your Cal.com, Calendly, or booking page URL. */
   consultationBookingHref: "https://example.com/book-consultation",
 } as const;
