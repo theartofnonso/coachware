@@ -83,7 +83,7 @@ export function GatedToolResult({
         </button>
         {emailSent && (
           <span className={ui.copyFeedback} aria-live="polite">
-            We will email you shortly (confirmation stub).
+            Check your inbox for your full readout.
           </span>
         )}
         {unlocked && apiError && !sendingEmail && (

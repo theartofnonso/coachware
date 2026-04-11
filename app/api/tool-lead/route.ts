@@ -1,3 +1,5 @@
+import { persistToolLead } from "@/lib/supabase/persist-leads";
+import { sendToolResultEmail } from "@/lib/resend/send-emails";
 import { validateLeadEmail, validateLeadFirstName } from "@/lib/tool-lead-validation";
 import type { LeadAction, ToolId, ToolLeadResponse } from "@/types/tool-lead";
 import { NextResponse } from "next/server";
@@ -20,10 +22,9 @@ function isLeadAction(v: unknown): v is LeadAction {
 /**
  * POST /api/tool-lead
  *
- * Stub: validates payload and returns success. No persistence or email yet.
+ * Validates payload, inserts into Supabase (`tool_leads`), then responds.
+ * `send_email` sends the tool readout via Resend (uses `plainText` on the result payload when present).
  *
- * TODO: Persist lead + tool + action to database for CRM / analytics.
- * TODO: On send_email, enqueue transactional email (e.g. Resend / SES) with result payload.
  * TODO: Optional webhook to external CRM (HubSpot, etc.).
  * TODO: Rate limiting and abuse checks (per IP / email).
  */
@@ -95,24 +96,42 @@ export async function POST(
     );
   }
 
-  if (process.env.NODE_ENV === "development") {
-    // TODO: structured log + enqueue job (CRM / email / analytics)
-    console.info("[api/tool-lead stub]", {
-      tool,
-      action,
-      email: email.trim(),
-    });
+  const saved = await persistToolLead({
+    tool,
+    action,
+    firstName,
+    email,
+    result,
+  });
+
+  if (!saved.ok) {
+    return NextResponse.json(
+      { ok: false, error: saved.message },
+      { status: saved.httpStatus },
+    );
   }
 
-  if (action === "unlock") {
+  if (action === "send_email") {
+    const sent = await sendToolResultEmail({
+      to: email,
+      firstName,
+      tool,
+      result,
+    });
+    if (!sent.ok) {
+      return NextResponse.json(
+        { ok: false, error: sent.message },
+        { status: sent.httpStatus },
+      );
+    }
     return NextResponse.json({
       ok: true,
-      message: "Unlocked (stub).",
+      message: "Check your inbox for your full readout.",
     });
   }
 
   return NextResponse.json({
     ok: true,
-    message: "Email queued (stub).",
+    message: "Unlocked.",
   });
 }

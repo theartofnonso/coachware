@@ -1,3 +1,5 @@
+import { persistCommunitySignup } from "@/lib/supabase/persist-leads";
+import { sendCommunityWelcomeEmail } from "@/lib/resend/send-emails";
 import { validateLeadEmail, validateLeadFirstName } from "@/lib/tool-lead-validation";
 import type { CommunitySignupResponse } from "@/types/community";
 import { NextResponse } from "next/server";
@@ -5,7 +7,8 @@ import { NextResponse } from "next/server";
 /**
  * POST /api/community
  *
- * Stub: validates name + email for community signup. Wire to email provider or CRM later.
+ * Validates name + email, inserts into Supabase (`community_signups`),
+ * then sends a welcome email via Resend when configured.
  */
 export async function POST(
   req: Request,
@@ -41,8 +44,27 @@ export async function POST(
     );
   }
 
+  const saved = await persistCommunitySignup({ firstName, email });
+  if (!saved.ok) {
+    return NextResponse.json(
+      { ok: false, error: saved.message },
+      { status: saved.httpStatus },
+    );
+  }
+
+  const sent = await sendCommunityWelcomeEmail({
+    to: email.trim(),
+    firstName: firstName.trim(),
+  });
+  if (!sent.ok) {
+    return NextResponse.json(
+      { ok: false, error: sent.message },
+      { status: sent.httpStatus },
+    );
+  }
+
   return NextResponse.json({
     ok: true,
-    message: "Recorded (stub). Connect email or CRM when ready.",
+    message: "You are on the list.",
   });
 }
