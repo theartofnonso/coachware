@@ -104,7 +104,11 @@ export function CommunitySection() {
               }
             />
             {firstNameError && (
-              <p id="community-first-name-error" className={ui.hint} role="alert">
+              <p
+                id="community-first-name-error"
+                className={ui.fieldError}
+                role="alert"
+              >
                 {firstNameError}
               </p>
             )}
@@ -129,7 +133,7 @@ export function CommunitySection() {
               aria-describedby={emailError ? "community-email-error" : undefined}
             />
             {emailError && (
-              <p id="community-email-error" className={ui.hint} role="alert">
+              <p id="community-email-error" className={ui.fieldError} role="alert">
                 {emailError}
               </p>
             )}

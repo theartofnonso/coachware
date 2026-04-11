@@ -47,17 +47,6 @@ export function IntakeForm({ value, onChange, onSubmit, errors }: Props) {
         onSubmit();
       }}
     >
-      {errors.length > 0 && (
-        <div className={ui.errorBox} role="alert">
-          <strong>Almost there</strong>
-          <ul className="mt-1.5 list-disc pl-[1.1rem]">
-            {errors.map((err) => (
-              <li key={err}>{err}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-
       <div className={ui.card}>
         <h2 className={ui.cardTitle}>What are you working toward?</h2>
         <fieldset className={ui.field}>
@@ -236,6 +225,17 @@ export function IntakeForm({ value, onChange, onSubmit, errors }: Props) {
           </p>
         )}
       </div>
+
+      {errors.length > 0 && (
+        <div className={`${ui.errorBox} mt-2`} role="alert">
+          <strong>Almost there</strong>
+          <ul className="mt-1.5 list-disc pl-[1.1rem]">
+            {errors.map((err) => (
+              <li key={err}>{err}</li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <div className={ui.actions}>
         <button type="submit" className={ui.btnPrimary}>

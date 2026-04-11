@@ -87,7 +87,7 @@ export function GatedToolResult({
           </span>
         )}
         {unlocked && apiError && !sendingEmail && (
-          <span className={`${ui.copyFeedback} text-zinc-950`} role="alert">
+          <span className="text-sm font-medium text-red-600" role="alert">
             {apiError}
           </span>
         )}

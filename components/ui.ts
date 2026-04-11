@@ -15,6 +15,9 @@ export const ui = {
   field: "mb-5 last:mb-0",
   label: "mb-2 block text-sm font-medium text-zinc-950",
   hint: "mt-1.5 text-[0.8125rem] leading-snug text-zinc-500",
+  /** Inline validation / field-level errors */
+  fieldError:
+    "mt-1.5 text-[0.8125rem] font-medium leading-snug text-red-600",
   input:
     "w-full rounded-lg border border-zinc-300 bg-white px-3 py-2.5 text-base text-zinc-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-950",
   select:
@@ -26,7 +29,7 @@ export const ui = {
   radioInput: "mt-0.5 accent-zinc-950",
   radioText: "text-[0.9375rem] leading-snug text-zinc-950",
   errorBox:
-    "mb-4 rounded-lg border border-zinc-300 bg-zinc-100 px-4 py-3.5 text-sm leading-normal text-zinc-950",
+    "mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3.5 text-sm font-medium leading-normal text-red-900",
   actions: "mt-6 flex flex-wrap items-center gap-2.5 print:hidden",
   btnPrimary:
     "cursor-pointer rounded-sm border border-zinc-950 bg-zinc-950 px-[1.1rem] py-2.5 text-sm font-medium tracking-wide text-white hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-950",

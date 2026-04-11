@@ -146,17 +146,6 @@ export function WeightProgressionTool() {
           <WeightProgressionGenerating onComplete={finishGeneration} />
         ) : !submitted || !result ? (
           <form onSubmit={handleSubmit}>
-              {errors.length > 0 && (
-                <div className={ui.errorBox} role="alert">
-                  <strong>Check these fields</strong>
-                  <ul className="mt-1.5 list-disc pl-[1.1rem]">
-                    {errors.map((err) => (
-                      <li key={err}>{err}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
               <div className={ui.card}>
                 <h2 className={ui.cardTitle}>Your lift</h2>
                 <div className={ui.field}>
@@ -343,6 +332,17 @@ export function WeightProgressionTool() {
                   </div>
                 </fieldset>
               </div>
+
+              {errors.length > 0 && (
+                <div className={`${ui.errorBox} mt-2`} role="alert">
+                  <strong>Check these fields</strong>
+                  <ul className="mt-1.5 list-disc pl-[1.1rem]">
+                    {errors.map((err) => (
+                      <li key={err}>{err}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               <div className={ui.actions}>
                 <button type="submit" className={ui.btnPrimary}>

@@ -70,7 +70,7 @@ export function LeadCaptureForm({
           }
         />
         {firstNameError && (
-          <p id="lead-first-name-error" className={ui.hint} role="alert">
+          <p id="lead-first-name-error" className={ui.fieldError} role="alert">
             {firstNameError}
           </p>
         )}
@@ -96,7 +96,7 @@ export function LeadCaptureForm({
           aria-describedby={emailError ? "lead-email-error" : undefined}
         />
         {emailError && (
-          <p id="lead-email-error" className={ui.hint} role="alert">
+          <p id="lead-email-error" className={ui.fieldError} role="alert">
             {emailError}
           </p>
         )}

@@ -141,17 +141,6 @@ export function CaloriesCalculatorTool() {
           <CaloriesCalculatorGenerating onComplete={finishGeneration} />
         ) : !submitted || !validated?.ok || !result ? (
           <form onSubmit={handleSubmit}>
-            {errors.length > 0 && (
-              <div className={ui.errorBox} role="alert">
-                <strong>Check these fields</strong>
-                <ul className="mt-1.5 list-disc pl-[1.1rem]">
-                  {errors.map((err) => (
-                    <li key={err}>{err}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
             <div className={ui.card}>
               <h2 className={ui.cardTitle}>About you</h2>
               <fieldset className={`${ui.field} min-w-0 border-0 p-0`}>
@@ -420,6 +409,17 @@ export function CaloriesCalculatorTool() {
                 </div>
               </fieldset>
             </div>
+
+            {errors.length > 0 && (
+              <div className={`${ui.errorBox} mt-2`} role="alert">
+                <strong>Check these fields</strong>
+                <ul className="mt-1.5 list-disc pl-[1.1rem]">
+                  {errors.map((err) => (
+                    <li key={err}>{err}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             <div className={ui.actions}>
               <button type="submit" className={ui.btnPrimary}>

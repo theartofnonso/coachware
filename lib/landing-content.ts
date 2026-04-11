@@ -27,7 +27,7 @@ export const LANDING_DIFFERENTIATOR = {
 } as const;
 
 export const LANDING_OFFER = {
-  kicker: "What you get",
+  kicker: "The Offer",
   heading: "What You Get",
   pillars: [
     {
