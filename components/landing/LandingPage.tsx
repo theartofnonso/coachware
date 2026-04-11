@@ -5,6 +5,7 @@ import { GuaranteeSection } from "@/components/landing/GuaranteeSection";
 import { HeroSection } from "@/components/landing/HeroSection";
 import { LandingFooter } from "@/components/landing/LandingFooter";
 import { OfferSection } from "@/components/landing/OfferSection";
+import { PricingSection } from "@/components/landing/PricingSection";
 import { ProgressTimelineSection } from "@/components/landing/ProgressTimelineSection";
 import { ToolsSection } from "@/components/landing/ToolsSection";
 
@@ -15,6 +16,7 @@ export function LandingPage() {
         <HeroSection />
         <DifferentiatorSection />
         <OfferSection />
+        <PricingSection />
         <ProgressTimelineSection />
         <GuaranteeSection />
         <ToolsSection />

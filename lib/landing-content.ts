@@ -56,6 +56,76 @@ export const LANDING_OFFER = {
     "https://calendar.app.google/GzsEx1pyGuiESaxE8",
 } as const;
 
+export const LANDING_PRICING = {
+  kicker: "Pricing",
+  heading: "Solo and coaching",
+  intro:
+    "I don't sell single sessions. Coaching is monthly, and you choose how much support you need.",
+  introOffer: {
+    kicker: "Intro offer",
+    headline: "Intro first",
+    body: "Two sessions to meet, assess, and see if we are a fit.",
+    price: "£40",
+    priceCaption: "for two sessions",
+    ctaLabel: "Book this intro",
+  },
+  solo: {
+    name: "Solo",
+    tagline: "For people who just need direction.",
+    audience: "Structure and tools. You train independently.",
+    price: "£40",
+    priceSuffix: "/month",
+    features: [
+      "Personalised training plan",
+      "Calories + protein targets",
+      "Monthly check-in (message or call)",
+    ],
+  },
+  coaching: {
+    name: "Coaching",
+    tagline: "For people who want accountability and real results.",
+    tiers: [
+      {
+        tierLabel: "1 session per week",
+        price: "£120",
+        priceSuffix: "/month",
+        features: [
+          "1 PT session per week",
+          "Everything in Solo",
+          "Weekly check-ins",
+        ],
+        highlighted: false,
+      },
+      {
+        tierLabel: "2 sessions per week",
+        price: "£180",
+        priceSuffix: "/month",
+        badge: "Most popular",
+        features: [
+          "2 PT sessions per week",
+          "Everything in Solo",
+          "Weekly check-ins",
+        ],
+        highlighted: true,
+      },
+      {
+        tierLabel: "3 sessions per week",
+        price: "£240",
+        priceSuffix: "/month",
+        features: [
+          "3 PT sessions per week",
+          "Everything in Solo",
+          "Weekly check-ins",
+        ],
+        highlighted: false,
+      },
+    ],
+  },
+  footerLead:
+    "Not sure which fits? Start with the intro and we will map the right tier from there.",
+  ctaLabel: "Book an intro",
+} as const;
+
 export const LANDING_PROGRESS = {
   kicker: "The path",
   heading: "Your progress",
