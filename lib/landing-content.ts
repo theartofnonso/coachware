@@ -58,7 +58,7 @@ export const LANDING_OFFER = {
 
 export const LANDING_PRICING = {
   kicker: "Pricing",
-  heading: "Solo and coaching",
+  heading: "and then Solo and coaching",
   intro:
     "I don't sell single sessions. Coaching is monthly, and you choose how much support you need.",
   introOffer: {
