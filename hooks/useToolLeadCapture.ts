@@ -2,41 +2,37 @@
 
 import { postToolLead } from "@/lib/tool-lead-api";
 import { stableToolResultContentKey } from "@/lib/tool-lead-key";
-import { readLeadUnlock, writeLeadUnlock } from "@/lib/tool-lead-session";
+import { readDeviceLead, writeDeviceLead } from "@/lib/tool-lead-session";
 import type { ToolId } from "@/types/tool-lead";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 export function useToolLeadCapture(toolId: ToolId, resultPayload: unknown) {
-  const contentKey = useMemo(
+  const resultIdentity = useMemo(
     () => stableToolResultContentKey(toolId, resultPayload),
     [toolId, resultPayload],
   );
 
-  const [unlocked, setUnlocked] = useState(false);
   const [lead, setLead] = useState<{
     firstName: string;
     email: string;
-  } | null>(null);
+  } | null>(() =>
+    typeof window !== "undefined" ? readDeviceLead() : null,
+  );
+
   const [unlockSubmitting, setUnlockSubmitting] = useState(false);
   const [sendingEmail, setSendingEmail] = useState(false);
   const [apiError, setApiError] = useState<string | null>(null);
   const [emailSent, setEmailSent] = useState(false);
 
-  // Hydrate from sessionStorage when the result identity (contentKey) changes.
+  const unlocked = lead !== null;
+
   useEffect(() => {
     queueMicrotask(() => {
-      const stored = readLeadUnlock(contentKey);
-      if (stored) {
-        setLead(stored);
-        setUnlocked(true);
-      } else {
-        setLead(null);
-        setUnlocked(false);
-      }
+      setLead(readDeviceLead());
       setApiError(null);
       setEmailSent(false);
     });
-  }, [contentKey]);
+  }, [resultIdentity]);
 
   const unlock = useCallback(
     async (firstName: string, email: string): Promise<boolean> => {
@@ -54,12 +50,12 @@ export function useToolLeadCapture(toolId: ToolId, resultPayload: unknown) {
         setApiError(res.error);
         return false;
       }
-      writeLeadUnlock(contentKey, { firstName, email });
-      setLead({ firstName, email });
-      setUnlocked(true);
+      const saved = { firstName, email };
+      writeDeviceLead(saved);
+      setLead(saved);
       return true;
     },
-    [toolId, resultPayload, contentKey],
+    [toolId, resultPayload],
   );
 
   const sendEmail = useCallback(async (): Promise<boolean> => {
