@@ -67,7 +67,8 @@ export const LANDING_PRICING = {
     body: "Two sessions to meet, assess, and see if we are a fit.",
     price: "£40",
     priceCaption: "for two sessions",
-    ctaLabel: "Book this intro",
+    ctaLabel: "Start with this intro",
+    paymentHref: "https://pay.gocardless.com/BRT000501Z5X5NG",
   },
   solo: {
     name: "Solo",
@@ -75,6 +76,8 @@ export const LANDING_PRICING = {
     audience: "Structure and tools. You train independently.",
     price: "£40",
     priceSuffix: "/month",
+    ctaLabel: "Start Solo",
+    paymentHref: "https://pay.gocardless.com/BRT000501ZDNHFW",
     features: [
       "Personalised training plan",
       "Calories + protein targets",
@@ -89,6 +92,8 @@ export const LANDING_PRICING = {
         tierLabel: "1 session per week",
         price: "£120",
         priceSuffix: "/month",
+        ctaLabel: "Choose this plan",
+        paymentHref: "https://pay.gocardless.com/BRT000501ZG12YC",
         features: [
           "1 PT session per week",
           "Everything in Solo",
@@ -101,6 +106,8 @@ export const LANDING_PRICING = {
         price: "£180",
         priceSuffix: "/month",
         badge: "Most popular",
+        ctaLabel: "Choose this plan",
+        paymentHref: "https://pay.gocardless.com/BRT000501ZH29SG",
         features: [
           "2 PT sessions per week",
           "Everything in Solo",
@@ -112,6 +119,8 @@ export const LANDING_PRICING = {
         tierLabel: "3 sessions per week",
         price: "£240",
         priceSuffix: "/month",
+        ctaLabel: "Choose this plan",
+        paymentHref: "https://pay.gocardless.com/BRT000501ZRXW0V",
         features: [
           "3 PT sessions per week",
           "Everything in Solo",
@@ -123,7 +132,7 @@ export const LANDING_PRICING = {
   },
   footerLead:
     "Not sure which fits? Start with the intro and we will map the right tier from there.",
-  ctaLabel: "Book an intro",
+  ctaLabel: "Start with the intro",
 } as const;
 
 export const LANDING_PROGRESS = {

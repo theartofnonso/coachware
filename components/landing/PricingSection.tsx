@@ -1,5 +1,5 @@
 import { ui } from "@/components/ui";
-import { LANDING_OFFER, LANDING_PRICING } from "@/lib/landing-content";
+import { LANDING_PRICING } from "@/lib/landing-content";
 
 function FeatureList({ items }: { items: readonly string[] }) {
   return (
@@ -69,7 +69,7 @@ export function PricingSection() {
               </p>
             </div>
             <a
-              href={LANDING_OFFER.consultationBookingHref}
+              href={introOffer.paymentHref}
               className="inline-flex w-full shrink-0 items-center justify-center rounded-sm border-2 border-white bg-white px-6 py-3.5 text-center text-sm font-semibold tracking-wide text-zinc-950 transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:w-auto sm:min-w-[12rem]"
               target="_blank"
               rel="noopener noreferrer"
@@ -106,6 +106,14 @@ export function PricingSection() {
             </span>
           </p>
           <FeatureList items={solo.features} />
+          <a
+            href={solo.paymentHref}
+            className={`${ui.btnText} mt-6 inline-flex min-h-11 w-full items-center justify-center sm:w-auto sm:justify-start`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {solo.ctaLabel}
+          </a>
         </article>
 
         <div>
@@ -156,6 +164,16 @@ export function PricingSection() {
                     </span>
                   </p>
                   <FeatureList items={tier.features} />
+                  {"paymentHref" in tier && tier.paymentHref ? (
+                    <a
+                      href={tier.paymentHref}
+                      className={`${ui.btnText} mt-6 inline-flex min-h-11 w-full items-center justify-center`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {tier.ctaLabel}
+                    </a>
+                  ) : null}
                 </article>
               );
             })}
@@ -168,7 +186,7 @@ export function PricingSection() {
           {LANDING_PRICING.footerLead}
         </p>
         <a
-          href={LANDING_OFFER.consultationBookingHref}
+          href={solo.paymentHref}
           className={`${ui.btnPrimary} w-full shrink-0 sm:w-auto`}
           target="_blank"
           rel="noopener noreferrer"

@@ -37,6 +37,8 @@ export const ui = {
     "cursor-pointer rounded-sm border border-zinc-950 bg-white px-[1.1rem] py-2.5 text-sm font-medium tracking-wide text-zinc-950 hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-950",
   btnGhost:
     "cursor-pointer rounded-sm border border-zinc-300 bg-transparent px-[1.1rem] py-2.5 text-sm font-medium tracking-wide text-zinc-950 hover:border-zinc-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-950",
+  btnText:
+    "cursor-pointer border-0 bg-transparent p-0 text-sm font-semibold tracking-wide text-zinc-950 underline underline-offset-[0.22rem] decoration-zinc-400 hover:decoration-zinc-950 hover:text-zinc-800 focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-950",
   summaryGrid:
     "grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-4",
   summaryDt:
