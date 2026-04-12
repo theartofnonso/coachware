@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { IntroOfferCountdown } from "@/components/IntroOfferCountdown";
 import { ui } from "@/components/ui";
 import { LANDING_PROFILE } from "@/lib/landing-content";
 
@@ -18,6 +19,7 @@ export function SiteNav() {
           {LANDING_PROFILE.name}
         </Link>
       </div>
+      <IntroOfferCountdown variant="strip" />
     </nav>
   );
 }

@@ -1,3 +1,4 @@
+import { IntroOfferCountdown } from "@/components/IntroOfferCountdown";
 import { ui } from "@/components/ui";
 import { LANDING_PRICING } from "@/lib/landing-content";
 
@@ -58,6 +59,8 @@ export function PricingSection() {
           <p className="relative mt-5 max-w-xl text-base leading-relaxed text-zinc-300 sm:text-[1.0625rem]">
             {introOffer.body}
           </p>
+
+          <IntroOfferCountdown variant="card" />
 
           <div className="relative mt-8 flex flex-col gap-6 border-t border-white/15 pt-8 sm:flex-row sm:items-end sm:justify-between sm:gap-8">
             <div>
