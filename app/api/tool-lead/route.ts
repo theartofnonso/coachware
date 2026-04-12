@@ -8,6 +8,7 @@ const TOOL_IDS: ToolId[] = [
   "nutrition-timing",
   "weight-progression",
   "calories-calculator",
+  "protein-checker",
 ];
 const ACTIONS: LeadAction[] = ["unlock", "send_email"];
 

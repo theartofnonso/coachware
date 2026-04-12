@@ -16,6 +16,7 @@ const TOOL_SUBJECT: Record<ToolId, string> = {
   "calories-calculator": "Your calorie calculator results",
   "nutrition-timing": "Your meal timing plan",
   "weight-progression": "Your weight progression summary",
+  "protein-checker": "Your protein checker results",
 };
 
 function toolPlainText(result: unknown): string {

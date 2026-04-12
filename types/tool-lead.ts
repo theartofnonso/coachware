@@ -1,7 +1,8 @@
 export type ToolId =
   | "nutrition-timing"
   | "weight-progression"
-  | "calories-calculator";
+  | "calories-calculator"
+  | "protein-checker";
 
 export type LeadAction = "unlock" | "send_email";
 

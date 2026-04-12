@@ -7,6 +7,12 @@ export interface LandingTool {
 
 export const LANDING_TOOLS: LandingTool[] = [
   {
+    href: "/protein-checker",
+    title: "Protein checker",
+    description:
+      "See if a food is a strong protein choice for your calories in seconds.",
+  },
+  {
     href: "/calories-calculator",
     title: "Calorie budget",
     description:
