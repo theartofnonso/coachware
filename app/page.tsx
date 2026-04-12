@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LandingPage } from "@/components/landing/LandingPage";
 
 export const metadata: Metadata = {
-  title: "Home",
+  title: "Train with Nonso Biose",
   description:
     "Build muscle, lose fat, and stay consistent for life. Coaching, training, nutrition, and free tools from Nonso Biose.",
 };
