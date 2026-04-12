@@ -59,7 +59,7 @@ export function IntroOfferCountdown({ variant }: { variant: Variant }) {
       suppressHydrationWarning
       aria-hidden
     >
-      {d > 0 ? `${d} ${d === 1 ? "day" : "days"} ` : null}
+      {d > 0 ? `${d}${d === 1 ? "day" : "days"} ` : null}
       {pad2(h)}:{pad2(m)}:{pad2(s)}
     </span>
   );
