@@ -23,7 +23,7 @@ export function AppShowcaseSection() {
           {LANDING_APP_SHOWCASE.screenshots.map((src, index) => (
             <figure
               key={src}
-              className="w-[82vw] max-w-[26rem] shrink-0 snap-center overflow-hidden"
+              className="w-[76vw] max-w-[23rem] shrink-0 snap-center overflow-hidden"
             >
               <Image
                 src={src}
