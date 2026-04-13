@@ -71,6 +71,7 @@ export const LANDING_APP_SHOWCASE = {
     "/mocks/3.png",
     "/mocks/4.png",
     "/mocks/5.png",
+    "/mocks/6.png",
   ] as const,
 } as const;
 
