@@ -56,6 +56,24 @@ export const LANDING_OFFER = {
     "https://calendar.app.google/GzsEx1pyGuiESaxE8",
 } as const;
 
+export const LANDING_APP_SHOWCASE = {
+  kicker: "Training app",
+  heading: "See the app you train in",
+  body:
+    "When we work together, you get your full training setup inside the app: sessions, notes, and progress in one place.",
+  supporting:
+    "Swipe through the screens below to get a feel for how coaching looks week to week.",
+  ctaLabel: "Check if you're a fit",
+  bookingHref: "https://calendar.app.google/GzsEx1pyGuiESaxE8",
+  screenshots: [
+    "/mocks/1.png",
+    "/mocks/2.png",
+    "/mocks/3.png",
+    "/mocks/4.png",
+    "/mocks/5.png",
+  ] as const,
+} as const;
+
 export const LANDING_PRICING = {
   kicker: "Pricing",
   heading: "and then Solo or coaching",

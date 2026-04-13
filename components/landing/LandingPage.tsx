@@ -1,4 +1,5 @@
 import { ui } from "@/components/ui";
+import { AppShowcaseSection } from "@/components/landing/AppShowcaseSection";
 import { CommunitySection } from "@/components/landing/CommunitySection";
 import { DifferentiatorSection } from "@/components/landing/DifferentiatorSection";
 import { GuaranteeSection } from "@/components/landing/GuaranteeSection";
@@ -18,6 +19,7 @@ export function LandingPage() {
         <OfferSection />
         <PricingSection />
         <ProgressTimelineSection />
+        <AppShowcaseSection />
         <GuaranteeSection />
         <ToolsSection />
         <CommunitySection />
