@@ -84,69 +84,60 @@ export const LANDING_APP_SHOWCASE = {
 
 export const LANDING_PRICING = {
   kicker: "Pricing",
-  heading: "Solo or Coaching",
+  heading: "Three packages",
   intro:
-    "I don't sell single sessions. Coaching is monthly, and you choose how much support you need.",
-  solo: {
-    name: "Solo",
-    tagline: "For people who just need direction.",
-    audience: "Structure and tools. You train independently.",
-    price: "£50",
-    priceSuffix: "/month",
-    ctaLabel: "Try Solo",
-    paymentHref: "https://pay.gocardless.com/BRT000501ZDNHFW",
-    features: [
-      "Personalised training plan",
-      "Calories + protein targets",
-      "Monthly check-in (message or call)",
-    ],
-  },
-  coaching: {
-    name: "Coaching",
-    tagline: "For people who want accountability and real results.",
-    tiers: [
-      {
-        tierLabel: "1 session per week",
-        price: "£140",
-        priceSuffix: "/month",
-        ctaLabel: "Choose this plan",
-        paymentHref: "https://pay.gocardless.com/BRT000501ZG12YC",
-        features: [
-          "1 PT session per week",
-          "Everything in Solo",
-          "Weekly check-ins",
-        ],
-        highlighted: false,
-      },
-      {
-        tierLabel: "2 sessions per week",
-        price: "£200",
-        priceSuffix: "/month",
-        badge: "Most popular",
-        ctaLabel: "Choose this plan",
-        paymentHref: "https://pay.gocardless.com/BRT000501ZH29SG",
-        features: [
-          "2 PT sessions per week",
-          "Everything in Solo",
-          "Weekly check-ins",
-        ],
-        highlighted: true,
-      },
-      {
-        tierLabel: "3 sessions per week",
-        price: "£300",
-        priceSuffix: "/month",
-        ctaLabel: "Choose this plan",
-        paymentHref: "https://pay.gocardless.com/BRT000501ZRXW0V",
-        features: [
-          "3 PT sessions per week",
-          "Everything in Solo",
-          "Weekly check-ins",
-        ],
-        highlighted: false,
-      },
-    ],
-  },
+    "Monthly only. Solo if you want a personalised plan and a lighter touch from me, or two or three sessions with me each week when you want more time on the floor.",
+  packages: [
+    {
+      title: "Solo",
+      tagline: "Train on your own timetable.",
+      description:
+        "A personalised training plan and calorie and protein targets, with a monthly check in so we keep it honest as life changes.",
+      price: "£50",
+      priceSuffix: "/month",
+      ctaLabel: "Start Solo",
+      paymentHref: "https://pay.gocardless.com/BRT000501ZDNHFW",
+      features: [
+        "Personalised training plan",
+        "Calories + protein targets",
+        "Monthly check-in (message or call)",
+      ],
+      highlighted: false,
+    },
+    {
+      title: "2 sessions per week",
+      tagline: "More time on the floor with me.",
+      description:
+        "Two coached sessions each week, plus a personalised plan and targets for the days you train alone. We adjust whenever you need.",
+      price: "£280",
+      priceSuffix: "/month",
+      badge: "Most popular",
+      ctaLabel: "Choose this plan",
+      paymentHref: "https://pay.gocardless.com/BRT000501ZH29SG",
+      features: [
+        "2 PT sessions per week",
+        "Personalised plan + nutrition targets",
+        "Weekly check-ins",
+      ],
+      highlighted: true,
+    },
+    {
+      title: "3 sessions per week",
+      tagline: "Highest touch.",
+      description:
+        "Three coached sessions each week, plus the same personalised plan and targets behind you the rest of the week. It evolves with you.",
+      price: "£360",
+      priceSuffix: "/month",
+      ctaLabel: "Choose this plan",
+      paymentHref: "https://pay.gocardless.com/BRT000501ZRXW0V",
+      features: [
+        "3 PT sessions per week",
+        "Personalised plan + nutrition targets",
+        "Weekly check-ins",
+      ],
+      highlighted: false,
+    },
+  ],
   footerLead:
     "Not sure which tier fits? Book a call and I'll help you pick.",
 } as const;

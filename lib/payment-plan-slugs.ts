@@ -2,7 +2,6 @@
 export const PAYMENT_PLAN_SLUGS = [
   "intro",
   "solo",
-  "coaching-1",
   "coaching-2",
   "coaching-3",
 ] as const;
