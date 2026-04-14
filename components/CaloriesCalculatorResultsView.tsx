@@ -46,8 +46,8 @@ function CaloriesPreview({
           {formatKcal(result.recommendedCalories)} / day
         </p>
         <p className={`${ui.hint} mt-2`}>
-          A practical daily budget to begin with. Unlock below for the full
-          walkthrough, other reference targets, and a short coaching note.
+          A practical daily budget to begin with. Unlock below for my full
+          walkthrough, other reference targets, and a short note from me.
         </p>
       </div>
     </div>
@@ -93,7 +93,7 @@ function CaloriesGatedBody({
       <div className={ui.card}>
         <h2 className={ui.cardTitle}>Reference targets</h2>
         <p className={`${ui.bodyText} mb-4 text-zinc-600`}>
-          We highlighted the line that matches what you said you want. The rest
+          I highlighted the line that matches what you said you want. The rest
           are there if your plans change later.
         </p>
         <ul className="m-0 list-none space-y-3 p-0">
@@ -172,7 +172,7 @@ export function CaloriesCalculatorResultsView({
     <GatedToolResult
       toolId="calories-calculator"
       resultPayload={leadPayload}
-      lockedTeaser="The rest of your readout is behind this step: the full summary, other reference targets, and a coaching note. Unlock when you are ready to read it all in one place."
+      lockedTeaser="The rest of your readout is behind this step: my full summary, other reference targets, and a short note from me. Unlock when you're ready to read it all in one place."
       unlockButtonLabel="Unlock full breakdown"
       preview={<CaloriesPreview result={result} />}
       gated={<CaloriesGatedBody result={result} />}

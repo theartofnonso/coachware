@@ -71,20 +71,20 @@ function buildExplanationParagraphs(
   const training = input.trainingDaysPerWeek;
 
   paragraphs.push(
-    "Here is a clear daily calorie budget to work from. We round the numbers so they are easy to remember and log.",
+    "Here is a clear daily calorie budget to work from. I round the numbers so they are easy to remember and log.",
   );
 
   if (goal === "fat_loss") {
     paragraphs.push(
-      "For fat loss we trimmed calories a little, not a lot, so the plan still feels livable. If things move slowly on the scale, small weekly tweaks usually beat one huge cut.",
+      "For fat loss I trimmed calories a little, not a lot, so the plan still feels livable. If things move slowly on the scale, small weekly tweaks usually beat one huge cut.",
     );
   } else if (goal === "recomposition") {
     paragraphs.push(
-      "For balance and maintenance we kept you close to what you burn, with a small dip. That tends to work when you want to stay steady or shift slowly while you keep training.",
+      "For balance and maintenance I kept you close to what you burn, with a small dip. That tends to work when you want to stay steady or shift slowly while you keep training.",
     );
   } else if (goal === "muscle_gain") {
     paragraphs.push(
-      "For muscle gain we added a modest bump, enough to support training without stacking calories higher than you need. How you train and recover still matters as much as the number.",
+      "For muscle gain I added a modest bump, enough to support training without stacking calories higher than you need. How you train and recover still matters as much as the number.",
     );
   }
 
@@ -95,7 +95,7 @@ function buildExplanationParagraphs(
     training >= 4
   ) {
     paragraphs.push(
-      `You told us you train about ${training} day${training === 1 ? "" : "s"} a week. If energy, sleep, or recovery feel off, a small food tweak often beats obsessing over a perfect calculator readout.`,
+      `You told me you train about ${training} day${training === 1 ? "" : "s"} a week. If energy, sleep, or recovery feel off, a small food tweak often beats obsessing over a perfect calculator readout.`,
     );
   }
 
@@ -104,18 +104,18 @@ function buildExplanationParagraphs(
   }
 
   paragraphs.push(
-    `About ${maintenanceCalories} kcal per day is our best guess at what you would need to stay near your current weight with the activity you described.`,
+    `About ${maintenanceCalories} kcal per day is my best guess at what you would need to stay near your current weight with the activity you described.`,
   );
 
   paragraphs.push(
-    `Given what you picked as your focus, a practical place to start is around ${recommendedCalories} kcal per day.`,
+    `Given what you picked as your focus, I'd start you around ${recommendedCalories} kcal per day.`,
   );
 
   return paragraphs;
 }
 
 const COACHING_NOTE =
-  "Think of this as a starting line, not a rule carved in stone. The best target is the one that fits your real life. Adjust as you go based on energy, training, sleep, and what the scale does over a few weeks.";
+  "I'd treat this as a starting line, not a rule carved in stone. The best target is the one that fits your real life. Adjust as you go based on energy, training, sleep, and what the scale does over a few weeks.";
 
 export function computeCaloriesResult(
   input: CaloriesCalculatorInput,
@@ -151,7 +151,7 @@ export function computeCaloriesResult(
       if (fatC.clamped) {
         wasClamped = true;
         clampMessage =
-          "The maths wanted to take you lower than we are comfortable suggesting, so we lifted your target to a safer floor. If your clinician gave you different numbers, follow them.";
+          "The maths wanted to take you lower than I'm comfortable suggesting, so I lifted your target to a safer floor. If your clinician gave you different numbers, follow them.";
       }
       break;
     case "recomposition":
@@ -159,7 +159,7 @@ export function computeCaloriesResult(
       if (recompC.clamped) {
         wasClamped = true;
         clampMessage =
-          "The maths wanted to take you lower than we are comfortable suggesting, so we lifted your target to a safer floor. If your clinician gave you different numbers, follow them.";
+          "The maths wanted to take you lower than I'm comfortable suggesting, so I lifted your target to a safer floor. If your clinician gave you different numbers, follow them.";
       }
       break;
     case "muscle_gain":

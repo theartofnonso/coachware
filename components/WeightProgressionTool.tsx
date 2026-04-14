@@ -308,7 +308,7 @@ export function WeightProgressionTool() {
                   <p className={`${ui.hint} -mt-1 mb-3`}>
                     This is one honest read for the whole exercise, not a rating
                     per set. Reps you entered above already show how each set
-                    went. We only use this to nudge the call when reps alone are
+                    went. I only use this to nudge the call when reps alone are
                     ambiguous (for example, form slipped or the whole thing felt
                     brutal).
                   </p>

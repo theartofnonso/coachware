@@ -10,9 +10,9 @@ export const LANDING_PROFILE = {
 
 export const LANDING_COACH_STATS = {
   kicker: "In practice",
-  heading: "Coaching, in real numbers",
+  heading: "These are my real coaching numbers",
   intro:
-    "A snapshot from my client roster and logged sessions — not vanity metrics, just what shows up in the work.",
+    "This is a straight snapshot from my actual client work. No vanity metrics, just the numbers behind the coaching.",
 } as const;
 
 export const LANDING_HERO = {
@@ -100,7 +100,7 @@ export const LANDING_PRICING = {
     name: "Solo",
     tagline: "For people who just need direction.",
     audience: "Structure and tools. You train independently.",
-    price: "£40",
+    price: "£50",
     priceSuffix: "/month",
     ctaLabel: "Start Solo",
     paymentHref: "https://pay.gocardless.com/BRT000501ZDNHFW",
@@ -116,7 +116,7 @@ export const LANDING_PRICING = {
     tiers: [
       {
         tierLabel: "1 session per week",
-        price: "£120",
+        price: "£140",
         priceSuffix: "/month",
         ctaLabel: "Choose this plan",
         paymentHref: "https://pay.gocardless.com/BRT000501ZG12YC",
@@ -129,7 +129,7 @@ export const LANDING_PRICING = {
       },
       {
         tierLabel: "2 sessions per week",
-        price: "£180",
+        price: "£200",
         priceSuffix: "/month",
         badge: "Most popular",
         ctaLabel: "Choose this plan",
@@ -143,7 +143,7 @@ export const LANDING_PRICING = {
       },
       {
         tierLabel: "3 sessions per week",
-        price: "£240",
+        price: "£300",
         priceSuffix: "/month",
         ctaLabel: "Choose this plan",
         paymentHref: "https://pay.gocardless.com/BRT000501ZRXW0V",

@@ -28,7 +28,7 @@ export function buildMealTimingLines(
   if (trainingStartMinutes !== null) {
     const t = formatAroundTime(trainingStartMinutes);
     lines.push(
-      `You said around ${t} for training. The times below are a sketch, not a stopwatch.`,
+      `You said around ${t} for training. I've sketched the times below as a guide, not a stopwatch.`,
     );
   }
 

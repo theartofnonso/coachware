@@ -8,10 +8,10 @@ type Props = {
 };
 
 const STEP_LABELS = [
-  "Turn your height, weight, and age into a baseline",
-  "Layer in how you move day to day",
-  "Set a sustainable adjustment for your goal",
-  "Shape a clear calorie budget you can use",
+  "I turned your height, weight, and age into a baseline",
+  "I layered in how you move day to day",
+  "I set a sustainable adjustment for your goal",
+  "I shaped a clear calorie budget you can use",
 ] as const;
 
 const STEP_MS = [680, 720, 760, 600];
@@ -72,7 +72,7 @@ export function CaloriesCalculatorGenerating({ onComplete }: Props) {
     <div className={ui.card} role="status" aria-live="polite" aria-busy="true">
       <h2 className={ui.cardTitle}>Building your calorie readout</h2>
       <p className={`${ui.bodyText} mb-5`}>
-        Give us a moment so the readout feels considered rather than instant.
+        Give me a moment so the readout feels considered rather than instant.
         Nothing you typed is lost.
       </p>
 

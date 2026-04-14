@@ -31,7 +31,7 @@ export function formatPlanForCopy(plan: NutritionPlan): string {
     "What a plate could look like",
     ...plan.meals.map((m) => `• ${m.displayLabel}: ${m.sampleStructure}`),
     "",
-    "Why we set it up this way",
+    "Why I set it up this way",
     plan.coachingNote,
   ];
 

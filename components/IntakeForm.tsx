@@ -213,14 +213,14 @@ export function IntakeForm({ value, onChange, onSubmit, errors }: Props) {
               onChange={(e) => set("trainingClock", e.target.value)}
             />
             <p className={ui.hint}>
-              We&apos;ll sketch meal times around this. It doesn&apos;t have to
+              I&apos;ll sketch meal times around this. It doesn&apos;t have to
               be perfect, just your usual start.
             </p>
           </div>
         )}
         {isRestDay && (
           <p className={ui.hint}>
-            On a rest day we skip workout timing and spread things evenly. No
+            On a rest day I skip workout timing and spread things evenly. No
             clock needed.
           </p>
         )}

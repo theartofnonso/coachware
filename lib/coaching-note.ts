@@ -17,7 +17,7 @@ export function buildCoachingNote(
 
   const performanceLine =
     goal === "muscle_gain"
-      ? "We tucked extra carbs around your session so you have juice to train and something solid to land on after."
+      ? "I tucked extra carbs around your session so you have juice to train and something solid to land on after."
       : goal === "fat_loss"
         ? "Carbs still cluster near training so the gym feels okay, while the rest of the day stays a little lighter for your deficit."
         : "Carbs lean toward your workout for performance, without making every meal a carb fest.";
@@ -26,16 +26,16 @@ export function buildCoachingNote(
     trainingPhase === "evening"
       ? "Evening sessions mean more carb love in the meals that wrap your workout, with steadier protein earlier."
       : trainingPhase === "early_morning"
-        ? "Early birds often do fine with a tiny optional bite beforehand and a real meal after. That is where we stacked carbs."
+        ? "Early birds often do fine with a tiny optional bite beforehand and a real meal after. That is where I stacked carbs."
         : "Midday training means breakfast stays normal, you eat before you go in, and the meal after carries most of the recovery weight.";
 
   const clockLine =
     trainingStartMinutes !== null
-      ? `We penciled times around ${formatAroundTime(trainingStartMinutes)}. Slide them if your real start moves. `
+      ? `I penciled times around ${formatAroundTime(trainingStartMinutes)}. Slide them if your real start moves. `
       : "";
 
   const sessionBit =
     trainingPhase === "rest_day" ? "" : ` (${phaseLabel.toLowerCase()})`;
 
-  return `${clockLine}You told us ${goalLabel.toLowerCase()} on a training day${sessionBit}. ${performanceLine} ${timingLine} Protein stays spread out so you are not living off one giant dinner. Try this rhythm for a week, notice how you feel, then tweak portions before you rewrite the whole plan.`;
+  return `${clockLine}You told me ${goalLabel.toLowerCase()} on a training day${sessionBit}. ${performanceLine} ${timingLine} Protein stays spread out so you are not living off one giant dinner. Try this rhythm for a week, notice how you feel, then tweak portions before you rewrite the whole plan.`;
 }

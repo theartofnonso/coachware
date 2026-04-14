@@ -67,7 +67,7 @@ export function ProteinCheckerTool() {
           <p className={ui.kicker}>Nutrition</p>
           <h1 className={ui.title}>Protein checker</h1>
           <p className={ui.lede}>
-            Enter protein and calories for any food or meal. You will get a
+            Enter protein and calories for any food or meal. I&apos;ll give you a
             fast read on whether it is a strong protein choice, and what to
             consider next.
           </p>

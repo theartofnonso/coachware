@@ -3,7 +3,7 @@ import type { Goal } from "@/types/nutrition";
 export function buildProteinGuidance(proteinPerMeal: number[]): string {
   const min = Math.min(...proteinPerMeal);
   const max = Math.max(...proteinPerMeal);
-  return `We split protein as evenly as we could. Think roughly ${min} to ${max} g per meal so muscle support stays steady and you are not banking everything on one huge plate.`;
+  return `I split protein as evenly as I could. Think roughly ${min} to ${max} g per meal so muscle support stays steady and you are not banking everything on one huge plate.`;
 }
 
 export function buildCarbGuidance(goal: Goal, isRestDay: boolean): string {
@@ -28,5 +28,5 @@ export function buildFatGuidance(isRestDay: boolean): string {
   if (isRestDay) {
     return "Fat can sit wherever it keeps you happy today. Pick foods you digest well and repeat what works.";
   }
-  return "Overall fat stays enough for health and taste, but we ease up right before you train so digestion is not competing with your workout. Other meals can carry a bit more for fullness.";
+  return "Overall fat stays enough for health and taste, but I ease up right before you train so digestion is not competing with your workout. Other meals can carry a bit more for fullness.";
 }

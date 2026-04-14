@@ -42,8 +42,8 @@ function ProteinPreview({
         </span>
       </p>
       <p className={`${ui.hint} mt-4 border-t border-zinc-100 pt-4`}>
-        Enter your email below to see the full explanation, a simple way to
-        improve this choice if needed, and a short coaching note.
+        Enter your email below to see my full explanation, a simple way to
+        improve this choice if needed, and a short note from me.
       </p>
     </div>
   );
@@ -83,7 +83,7 @@ export function ProteinCheckerResultsView({
     <GatedToolResult
       toolId="protein-checker"
       resultPayload={leadPayload}
-      lockedTeaser="Unlock the explanation, practical suggestion, and coaching note."
+      lockedTeaser="Unlock my explanation, practical suggestion, and a short note from me."
       unlockButtonLabel="Enter your email to unlock full result"
       preview={<ProteinPreview input={input} result={result} />}
       gated={<ProteinGatedBody result={result} />}

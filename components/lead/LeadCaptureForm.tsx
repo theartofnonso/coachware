@@ -43,9 +43,9 @@ export function LeadCaptureForm({
 
   return (
     <form className={ui.leadPanel} onSubmit={handleSubmit} noValidate>
-      <h3 className={ui.leadPanelTitle}>Unlock the rest of your plan</h3>
+      <h3 className={ui.leadPanelTitle}>Unlock the rest from me</h3>
       <p className={ui.leadPanelHint}>
-        Enter your details to unlock the full recommendation and send a copy
+        Enter your details to unlock my full recommendation and send a copy
         to your email.
       </p>
 

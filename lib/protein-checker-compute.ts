@@ -5,7 +5,7 @@ import type {
 } from "@/types/protein-checker";
 
 const COACHING_NOTE =
-  "Use this as a quick guide, not a rulebook. You don't need perfect foods. Just aim to make better protein choices more often.";
+  "I use this kind of check as a quick guide, not a rulebook. You don't need perfect foods. Just aim to make better protein choices more often.";
 
 function classifyLevel(density: number): ProteinDensityLevel {
   if (density >= 10) {
@@ -41,23 +41,23 @@ function emojiForLevel(level: ProteinDensityLevel): string {
 
 function explanationForLevel(level: ProteinDensityLevel): string {
   switch (level) {
-    case "high":
-      return "Great protein choice. It supports fat loss and muscle building.";
+       case "high":
+      return "I'd call this a strong protein choice. It supports fat loss and muscle building.";
     case "moderate":
-      return "Decent, but can be improved for better results.";
+      return "I'd call this decent, but you can still tighten it up for better results.";
     default:
-      return "Low protein for the calories. Not ideal if your goal is fat loss or muscle gain.";
+      return "In my book this is low protein for the calories. Not ideal if your goal is fat loss or muscle gain.";
   }
 }
 
 function improvementForLevel(level: ProteinDensityLevel): string {
   switch (level) {
     case "high":
-      return "No change needed. This is already a strong protein choice.";
+      return "I wouldn't change a thing here. This is already a strong protein choice.";
     case "moderate":
-      return "To improve this, add a lean protein like egg whites, chicken, or Greek yogurt.";
+      return "What I'd do: add a lean protein like egg whites, chicken, or Greek yogurt.";
     default:
-      return "For a better protein option, choose lean sources like chicken, Greek yogurt, cottage cheese, or turkey.";
+      return "What I'd reach for instead: lean sources like chicken, Greek yogurt, cottage cheese, or turkey.";
   }
 }
 

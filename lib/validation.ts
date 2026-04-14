@@ -18,7 +18,7 @@ export function validateInputs(input: UserInputs): ValidationResult {
     input.dailyCalories > MAX_CALORIES
   ) {
     errors.push(
-      `Calories work best for us between ${MIN_CALORIES.toLocaleString()} and ${MAX_CALORIES.toLocaleString()}. Adjust if you meant something else.`,
+      `Calories work best between ${MIN_CALORIES.toLocaleString()} and ${MAX_CALORIES.toLocaleString()} for this tool. Adjust if you meant something else.`,
     );
   }
 
@@ -58,7 +58,7 @@ export function validateInputs(input: UserInputs): ValidationResult {
       input.trainingStartMinutes > 1439)
   ) {
     errors.push(
-      "Pop in roughly when you train so we can sketch meal times on the clock.",
+      "Pop in roughly when you train so I can sketch meal times on the clock.",
     );
   }
 
@@ -86,7 +86,7 @@ export function collectSoftWarnings(
 
   if (input.dailyCarbsG < 50 && !isRestDay) {
     warnings.push(
-      "Carbs are pretty low for a workout day. The plan still works, but you might feel a bit flatter in training.",
+      "Carbs are pretty low for a workout day. This layout still works, but you might feel a bit flatter in training.",
     );
   }
 

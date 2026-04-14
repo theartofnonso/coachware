@@ -58,7 +58,7 @@ export function buildWhyParagraphs(
       );
     } else if (d === "form_breakdown") {
       parts.push(
-        "We are nudging load down so you can own each rep without compensating.",
+        "I'm nudging load down so you can own each rep without compensating.",
       );
     } else {
       parts.push(

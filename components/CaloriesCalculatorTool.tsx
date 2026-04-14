@@ -131,7 +131,7 @@ export function CaloriesCalculatorTool() {
           <p className={ui.kicker}>Nutrition</p>
           <h1 className={ui.title}>Find your calorie budget</h1>
           <p className={ui.lede}>
-            Tell us a bit about you and we will estimate how much food energy
+            Tell me a bit about you and I&apos;ll estimate how much food energy
             you need day to day. Plain language, rounded numbers, and something
             you can actually use and tweak as you go.
           </p>
@@ -379,7 +379,7 @@ export function CaloriesCalculatorTool() {
                   }
                 />
                 <p className={ui.hint}>
-                  Count planned workouts only. We might mention it in your
+                  Count planned workouts only. I might mention it in your
                   summary, but it does not change the main maths twice over.
                 </p>
               </div>

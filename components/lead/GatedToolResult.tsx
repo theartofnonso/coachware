@@ -75,7 +75,7 @@ export function GatedToolResult({
           title={
             unlocked
               ? undefined
-              : "Unlock your full result first to email it."
+              : "Unlock the full result first so I can email it to you."
           }
           onClick={() => void sendEmail()}
         >
@@ -83,7 +83,7 @@ export function GatedToolResult({
         </button>
         {emailSent && (
           <span className={ui.copyFeedback} aria-live="polite">
-            Check your inbox for your full readout.
+            Check your inbox — I've sent your full readout.
           </span>
         )}
         {unlocked && apiError && !sendingEmail && (

@@ -33,19 +33,19 @@ export async function CoachStatsSection() {
 
       <dl className="mt-10 grid gap-6 sm:grid-cols-3 sm:gap-8">
         <div className="rounded-lg border border-zinc-200 bg-white px-5 py-6 sm:px-6">
-          <dt className={ui.summaryDt}>Clients</dt>
+          <dt className={ui.summaryDt}>Clients I coach</dt>
           <dd className="mt-2 font-serif text-3xl font-semibold tabular-nums tracking-[-0.02em] text-zinc-950 sm:text-4xl">
             {stats.clientsCount.toLocaleString()}
           </dd>
         </div>
         <div className="rounded-lg border border-zinc-200 bg-white px-5 py-6 sm:px-6">
-          <dt className={ui.summaryDt}>Sessions logged</dt>
+          <dt className={ui.summaryDt}>Sessions completed</dt>
           <dd className="mt-2 font-serif text-3xl font-semibold tabular-nums tracking-[-0.02em] text-zinc-950 sm:text-4xl">
             {stats.sessionsCount.toLocaleString()}
           </dd>
         </div>
         <div className="rounded-lg border border-zinc-200 bg-white px-5 py-6 sm:px-6 sm:col-span-1">
-          <dt className={ui.summaryDt}>Hours coached</dt>
+          <dt className={ui.summaryDt}>Hours in session</dt>
           <dd className="mt-2 font-serif text-3xl font-semibold tabular-nums tracking-[-0.02em] text-zinc-950 sm:text-4xl">
             {hoursDisplay}
           </dd>

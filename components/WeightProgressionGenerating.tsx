@@ -8,10 +8,10 @@ type Props = {
 };
 
 const STEP_LABELS = [
-  "Read your rep range, weight, and sets",
-  "Compared each set to your target range",
-  "Chose stay, add reps, go heavier, or lighten the load",
-  "Lined up your next step and example path",
+  "I read your rep range, weight, and sets",
+  "I compared each set to your target range",
+  "I chose stay, add reps, go heavier, or lighten the load",
+  "I lined up your next step and example path",
 ] as const;
 
 const STEP_MS = [720, 780, 820, 640];
@@ -72,7 +72,7 @@ export function WeightProgressionGenerating({ onComplete }: Props) {
     <div className={ui.card} role="status" aria-live="polite" aria-busy="true">
       <h2 className={ui.cardTitle}>Building your progression readout</h2>
       <p className={`${ui.bodyText} mb-5`}>
-        Hang tight while we turn your numbers into a clear call for next
+        Hang tight while I turn your numbers into a clear call for next
         session. Your inputs are already saved; this step is just so the result
         feels considered.
       </p>

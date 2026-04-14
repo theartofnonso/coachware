@@ -98,7 +98,7 @@ export function NutritionTool() {
           <p className={ui.kicker}>Eat around your training</p>
           <h1 className={ui.title}>Let&apos;s map your day</h1>
           <p className={ui.lede}>
-            You already know your calories and macros. We&apos;ll help you place
+            You already know your calories and macros. I&apos;ll help you place
             them through the day so eating feels doable, not like homework.
           </p>
         </header>

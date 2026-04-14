@@ -28,8 +28,8 @@ function WeightResultPreview({ result }: { result: WeightProgressionResult }) {
         )}
       </div>
       <p className={`${ui.hint} mt-4 border-t border-zinc-100 pt-4`}>
-        Unlock for the full why, your next session step, example weeks, and the
-        coaching note.
+        Unlock for my full why, your next session step, example weeks, and a
+        short note from me.
       </p>
     </div>
   );
@@ -39,7 +39,7 @@ function WeightResultGatedBody({ result }: { result: WeightProgressionResult }) 
   return (
     <>
       <div className={ui.card}>
-        <h2 className={ui.cardTitle}>Why this decision was made</h2>
+        <h2 className={ui.cardTitle}>Why I landed here</h2>
         <div className="space-y-3">
           {result.whyParagraphs.map((p) => (
             <p key={p} className={ui.bodyText}>
@@ -87,7 +87,7 @@ export function WeightProgressionResultsView({
     <GatedToolResult
       toolId="weight-progression"
       resultPayload={leadPayload}
-      lockedTeaser="The headline above is yours. Below is the reasoning, next session script, example weeks, and coaching note. Unlock to read the full recommendation."
+      lockedTeaser="The headline above is yours. Below is my reasoning, your next session script, example weeks, and a note from me. Unlock to read the full recommendation."
       unlockButtonLabel="See the full recommendation"
       preview={<WeightResultPreview result={result} />}
       gated={<WeightResultGatedBody result={result} />}

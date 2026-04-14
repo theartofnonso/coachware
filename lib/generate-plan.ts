@@ -66,7 +66,7 @@ export function generateNutritionPlan(input: UserInputs): NutritionPlan {
     ? [
         "Two meals is usually too restrictive for training days. It makes fuel timing, recovery, and protein spread harder than it needs to be.",
         "When there is a long gap from first meal to training, performance can dip and the post-workout meal has to do too much heavy lifting.",
-        "So we use three meals as the minimum: one earlier meal, one pre-workout meal, and one post-workout meal.",
+        "So I use three meals as the minimum: one earlier meal, one pre-workout meal, and one post-workout meal.",
         ...mealTimingLinesBase,
       ]
     : mealTimingLinesBase;

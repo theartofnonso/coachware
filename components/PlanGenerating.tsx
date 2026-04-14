@@ -10,12 +10,12 @@ type Props = {
 
 function stepLabels(isRestDay: boolean): string[] {
   return [
-    "Checked your calorie and macro targets",
-    "Laid out your meal rhythm",
+    "I checked your calorie and macro targets",
+    "I laid out your meal rhythm",
     isRestDay
-      ? "Balanced the day for a rest day"
-      : "Anchored timing around your workout",
-    "Assembled your plan",
+      ? "I balanced the day for a rest day"
+      : "I anchored timing around your workout",
+    "I assembled your plan",
   ];
 }
 
@@ -78,8 +78,8 @@ export function PlanGenerating({ isRestDay, onComplete }: Props) {
     <div className={ui.card} role="status" aria-live="polite" aria-busy="true">
       <h2 className={ui.cardTitle}>Building your layout</h2>
       <p className={`${ui.bodyText} mb-5`}>
-        Give us a moment while we line things up. Your answers are already in;
-        this is just us organizing them so the plan reads clearly.
+        Give me a moment while I line things up. Your answers are already in;
+        I'm just organizing them so the plan reads clearly.
       </p>
 
       <p className="sr-only">{liveLabel}</p>

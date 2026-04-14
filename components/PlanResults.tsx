@@ -41,7 +41,7 @@ function PlanResultPreview({ plan }: { plan: NutritionPlan }) {
         </div>
       </dl>
       <p className={`${ui.hint} mt-4 border-t border-zinc-100 pt-4`}>
-        Protein, carbs, and fats per meal, clock windows, plate ideas, and the
+        Protein, carbs, and fats per meal, clock windows, plate ideas, and my
         full coaching note unlock below.
       </p>
     </div>
@@ -165,7 +165,7 @@ function PlanResultGatedBody({ plan }: { plan: NutritionPlan }) {
       </div>
 
       <div className={ui.card}>
-        <h2 className={ui.cardTitle}>Why we set it up this way</h2>
+        <h2 className={ui.cardTitle}>Why I set it up this way</h2>
         <p className={ui.coachNote}>{plan.coachingNote}</p>
         {plan.warnings.length > 0 && (
           <div className={ui.warnings}>
@@ -189,7 +189,7 @@ export function PlanResults({ plan, onEdit, onReset }: Props) {
     <GatedToolResult
       toolId="nutrition-timing"
       resultPayload={leadPayload}
-      lockedTeaser="Below you will find meal timing, macros split by meal, sample plates, and the full coaching note. Unlock to see everything in one place."
+      lockedTeaser="Below you'll find how I'd pace your meals, macros split by meal, sample plates, and my full coaching note. Unlock to see everything in one place."
       unlockButtonLabel="Get the full plan"
       preview={<PlanResultPreview plan={plan} />}
       gated={<PlanResultGatedBody plan={plan} />}
