@@ -8,6 +8,13 @@ export const LANDING_PROFILE = {
   imageAlt: "Portrait of Nonso Biose, coach and personal trainer",
 } as const;
 
+export const LANDING_COACH_STATS = {
+  kicker: "In practice",
+  heading: "Coaching, in real numbers",
+  intro:
+    "A snapshot from my client roster and logged sessions — not vanity metrics, just what shows up in the work.",
+} as const;
+
 export const LANDING_HERO = {
   headline: "Get in shape and stay that way.",
   /** Rendered with emphasis on `emphasize` phrases. */

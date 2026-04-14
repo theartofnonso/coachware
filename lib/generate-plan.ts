@@ -18,7 +18,8 @@ export function generateNutritionPlan(input: UserInputs): NutritionPlan {
     ? "rest_day"
     : deriveTrainingPhase(input.trainingStartMinutes ?? 12 * 60);
 
-  const mealCount = input.mealPreference;
+  const usingMinimumThreeMeals = !isRestDay && input.mealPreference === 2;
+  const mealCount = usingMinimumThreeMeals ? 3 : input.mealPreference;
   const roles = assignMealRoles(trainingPhase, mealCount, isRestDay);
 
   const protein = distributeProteinAcrossMeals(input.dailyProteinG, mealCount);
@@ -55,12 +56,20 @@ export function generateNutritionPlan(input: UserInputs): NutritionPlan {
   const proteinGuidance = buildProteinGuidance(protein);
   const carbGuidance = buildCarbGuidance(input.goal, isRestDay);
   const fatGuidance = buildFatGuidance(isRestDay);
-  const mealTimingLines = buildMealTimingLines(
+  const mealTimingLinesBase = buildMealTimingLines(
     trainingPhase,
     roles,
     isRestDay,
     input.trainingStartMinutes,
   );
+  const mealTimingLines = usingMinimumThreeMeals
+    ? [
+        "Two meals is usually too restrictive for training days. It makes fuel timing, recovery, and protein spread harder than it needs to be.",
+        "When there is a long gap from first meal to training, performance can dip and the post-workout meal has to do too much heavy lifting.",
+        "So we use three meals as the minimum: one earlier meal, one pre-workout meal, and one post-workout meal.",
+        ...mealTimingLinesBase,
+      ]
+    : mealTimingLinesBase;
   const coachingNote = buildCoachingNote(
     input.goal,
     trainingPhase,

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ToolListIcon } from "@/components/landing/ToolListIcons";
 import { ui } from "@/components/ui";
 import { LANDING_TOOLS_SECTION } from "@/lib/landing-content";
 import { LANDING_TOOLS } from "@/lib/landing-tools";
@@ -24,13 +25,21 @@ export function ToolsSection() {
               href={tool.href}
               className="group flex flex-col gap-1 rounded-lg border border-zinc-200 bg-white px-5 py-5 transition-colors hover:border-zinc-400 sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-6"
             >
-              <div className="min-w-0">
-                <span className="block font-medium text-zinc-950">
-                  {tool.title}
-                </span>
-                <span className="mt-1 block text-sm leading-relaxed text-zinc-600">
-                  {tool.description}
-                </span>
+              <div className="flex min-w-0 gap-4 sm:items-start">
+                <div
+                  className="flex size-11 shrink-0 items-center justify-center rounded-lg border border-zinc-200 bg-zinc-50 text-zinc-700 transition-colors group-hover:border-zinc-300 group-hover:bg-white sm:size-12"
+                  aria-hidden
+                >
+                  <ToolListIcon name={tool.icon} className="size-5" />
+                </div>
+                <div className="min-w-0">
+                  <span className="block font-medium text-zinc-950">
+                    {tool.title}
+                  </span>
+                  <span className="mt-1 block text-sm leading-relaxed text-zinc-600">
+                    {tool.description}
+                  </span>
+                </div>
               </div>
               <span className="mt-3 shrink-0 text-sm font-medium text-zinc-950 underline-offset-4 group-hover:underline sm:mt-0">
                 Open
