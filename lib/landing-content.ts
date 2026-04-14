@@ -84,25 +84,16 @@ export const LANDING_APP_SHOWCASE = {
 
 export const LANDING_PRICING = {
   kicker: "Pricing",
-  heading: "and then Solo or coaching",
+  heading: "Solo or Coaching",
   intro:
     "I don't sell single sessions. Coaching is monthly, and you choose how much support you need.",
-  introOffer: {
-    kicker: "Intro offer",
-    headline: "Intro first",
-    body: "Two sessions to meet, assess, and see if we are a fit.",
-    price: "£40",
-    priceCaption: "for two sessions",
-    ctaLabel: "Start with this intro",
-    paymentHref: "https://pay.gocardless.com/BRT000501Z5X5NG",
-  },
   solo: {
     name: "Solo",
     tagline: "For people who just need direction.",
     audience: "Structure and tools. You train independently.",
     price: "£50",
     priceSuffix: "/month",
-    ctaLabel: "Start Solo",
+    ctaLabel: "Try Solo",
     paymentHref: "https://pay.gocardless.com/BRT000501ZDNHFW",
     features: [
       "Personalised training plan",
@@ -157,8 +148,7 @@ export const LANDING_PRICING = {
     ],
   },
   footerLead:
-    "Not sure which fits? Start with the intro and we will map the right tier from there.",
-  ctaLabel: "Start with the intro",
+    "Not sure which tier fits? Book a call and I'll help you pick.",
 } as const;
 
 export const LANDING_PROGRESS = {

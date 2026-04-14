@@ -1,6 +1,5 @@
-import { IntroOfferCountdown } from "@/components/IntroOfferCountdown";
 import { ui } from "@/components/ui";
-import { LANDING_PRICING } from "@/lib/landing-content";
+import { LANDING_OFFER, LANDING_PRICING } from "@/lib/landing-content";
 
 function FeatureList({ items }: { items: readonly string[] }) {
   return (
@@ -22,7 +21,7 @@ function FeatureList({ items }: { items: readonly string[] }) {
 }
 
 export function PricingSection() {
-  const { introOffer, solo, coaching } = LANDING_PRICING;
+  const { solo, coaching } = LANDING_PRICING;
 
   return (
     <section
@@ -32,60 +31,9 @@ export function PricingSection() {
     >
       <p className={ui.landingSectionKicker}>{LANDING_PRICING.kicker}</p>
 
-      <div
-        className="mt-6 overflow-hidden rounded-2xl border-2 border-zinc-950 bg-zinc-950 text-white shadow-[0_24px_48px_-12px_rgba(0,0,0,0.35)]"
-        role="region"
-        aria-labelledby="intro-offer-heading"
-      >
-        <div className="relative px-6 py-8 sm:px-8 sm:py-10">
-          <div
-            className="pointer-events-none absolute -right-16 -top-24 size-56 rounded-full bg-white/[0.06] blur-2xl"
-            aria-hidden
-          />
-          <div
-            className="pointer-events-none absolute -bottom-20 -left-12 size-48 rounded-full bg-white/[0.04] blur-2xl"
-            aria-hidden
-          />
-
-          <p className="relative text-[11px] font-semibold uppercase tracking-[0.16em] text-zinc-400">
-            {introOffer.kicker}
-          </p>
-          <h2
-            id="intro-offer-heading"
-            className="relative mt-3 font-serif text-[1.75rem] font-semibold uppercase leading-[1.1] tracking-[0.04em] text-white sm:text-4xl sm:tracking-[0.06em]"
-          >
-            {introOffer.headline}
-          </h2>
-          <p className="relative mt-5 max-w-xl text-base leading-relaxed text-zinc-300 sm:text-[1.0625rem]">
-            {introOffer.body}
-          </p>
-
-          <IntroOfferCountdown variant="card" />
-
-          <div className="relative mt-8 flex flex-col gap-6 border-t border-white/15 pt-8 sm:flex-row sm:items-end sm:justify-between sm:gap-8">
-            <div>
-              <p className="font-serif text-[2.75rem] font-semibold leading-none tracking-[-0.03em] text-white sm:text-5xl">
-                {introOffer.price}
-              </p>
-              <p className="mt-2 text-sm font-medium text-zinc-400">
-                {introOffer.priceCaption}
-              </p>
-            </div>
-            <a
-              href={introOffer.paymentHref}
-              className="inline-flex w-full shrink-0 items-center justify-center rounded-sm border-2 border-white bg-white px-6 py-3.5 text-center text-sm font-semibold tracking-wide text-zinc-950 transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:w-auto sm:min-w-[12rem]"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {introOffer.ctaLabel}
-            </a>
-          </div>
-        </div>
-      </div>
-
       <h2
         id="pricing-heading"
-        className={`${ui.landingSectionTitle} mt-14 sm:mt-16`}
+        className={`${ui.landingSectionTitle} mt-6 sm:mt-8`}
       >
         {LANDING_PRICING.heading}
       </h2>
@@ -132,7 +80,7 @@ export function PricingSection() {
               const featured = tier.highlighted;
               return (
                 <article
-                  key={tier.price}
+                  key={`${tier.tierLabel}-${tier.price}`}
                   className={`relative flex flex-col rounded-xl border bg-white shadow-sm transition-[border-color,box-shadow] ${
                     featured
                       ? "z-10 border-2 border-zinc-950 p-6 shadow-lg sm:p-8 lg:-my-3 lg:scale-[1.06] lg:px-7 motion-reduce:lg:my-0 motion-reduce:lg:scale-100"
@@ -189,12 +137,12 @@ export function PricingSection() {
           {LANDING_PRICING.footerLead}
         </p>
         <a
-          href={solo.paymentHref}
+          href={LANDING_OFFER.consultationBookingHref}
           className={`${ui.btnPrimary} w-full shrink-0 sm:w-auto`}
           target="_blank"
           rel="noopener noreferrer"
         >
-          {LANDING_PRICING.ctaLabel}
+          {LANDING_OFFER.consultationCtaLabel}
         </a>
       </div>
     </section>
