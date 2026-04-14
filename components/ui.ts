@@ -94,7 +94,8 @@ export const ui = {
     "mb-1 font-serif text-lg font-semibold text-zinc-950 sm:text-xl",
   leadPanelHint: "mb-5 text-[0.9375rem] leading-relaxed text-zinc-600",
   /** Landing / profile page: wider measure, editorial spacing */
-  landingPage: "min-h-screen bg-zinc-50 text-zinc-950 antialiased",
+  landingPage:
+    "min-h-screen overflow-x-hidden bg-zinc-50 text-zinc-950 antialiased",
   landingInner: "mx-auto max-w-4xl px-4 sm:px-6 lg:px-8",
   landingSection:
     "scroll-mt-24 border-t border-zinc-200 py-16 sm:py-20 lg:py-24 first:border-t-0 first:pt-8 sm:first:pt-10 lg:first:pt-12",

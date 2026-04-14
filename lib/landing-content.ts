@@ -26,6 +26,23 @@ export const LANDING_HERO = {
   },
 } as const;
 
+/** Short “I know…” lines: doubts that keep people from hiring a coach. Shown in the hero marquee. */
+export const LANDING_WORRIES_MARQUEE = {
+  ariaLabel: "Common worries before working with a coach",
+  items: [
+    "I know the cost makes you think twice.",
+    "I know you've tried this before.",
+    "I know your week is already full.",
+    "I know the gym can feel like the wrong room.",
+    "I know you're braced for a sales pitch.",
+    "I know 'coach' might not sound like you.",
+    "I know a rough experience still stings.",
+    "I know starting over is exhausting.",
+    "I know you're scared of being judged.",
+    "I know figuring it out alone feels safer.",
+  ] as const,
+} as const;
+
 export const LANDING_DIFFERENTIATOR = {
   kicker: "Approach",
   heading: "Beyond the plan",
@@ -84,62 +101,39 @@ export const LANDING_APP_SHOWCASE = {
 
 export const LANDING_PRICING = {
   kicker: "Pricing",
-  heading: "Three packages",
+  heading: "Monthly coaching",
   intro:
-    "Monthly only. Solo if you want a personalised plan and a lighter touch from me, or two or three sessions with me each week when you want more time on the floor.",
+    "Two tiers, monthly only. Same coaching from me, different amounts of time on the floor. Pick the one that fits you.",
   packages: [
     {
-      title: "Solo",
-      tagline: "Train on your own timetable.",
-      description:
-        "A personalised training plan and calorie and protein targets, with a monthly check in so we keep it honest as life changes.",
-      price: "£50",
-      priceSuffix: "/month",
-      ctaLabel: "Start Solo",
-      paymentHref: "https://pay.gocardless.com/BRT000501ZDNHFW",
-      features: [
-        "Personalised training plan",
-        "Calories + protein targets",
-        "Monthly check-in (message or call)",
-      ],
-      highlighted: false,
-    },
-    {
       title: "2 sessions per week",
-      tagline: "More time on the floor with me.",
       description:
-        "Two coached sessions each week, plus a personalised plan and targets for the days you train alone. We adjust whenever you need.",
+        "Two coached sessions with me each week, plus a personalised plan and nutrition targets for the other days. We adjust whenever you need.",
       price: "£280",
       priceSuffix: "/month",
-      badge: "Most popular",
-      ctaLabel: "Choose this plan",
+      ctaLabel: "Get started",
       paymentHref: "https://pay.gocardless.com/BRT000501ZH29SG",
       features: [
         "2 PT sessions per week",
         "Personalised plan + nutrition targets",
         "Weekly check-ins",
       ],
-      highlighted: true,
     },
     {
       title: "3 sessions per week",
-      tagline: "Highest touch.",
       description:
-        "Three coached sessions each week, plus the same personalised plan and targets behind you the rest of the week. It evolves with you.",
+        "Three coached sessions with me each week, plus the same personalised plan and targets for the rest of the week. It evolves with you.",
       price: "£360",
       priceSuffix: "/month",
-      ctaLabel: "Choose this plan",
+      ctaLabel: "Get started",
       paymentHref: "https://pay.gocardless.com/BRT000501ZRXW0V",
       features: [
         "3 PT sessions per week",
         "Personalised plan + nutrition targets",
         "Weekly check-ins",
       ],
-      highlighted: false,
     },
   ],
-  footerLead:
-    "Not sure which tier fits? Book a call and I'll help you pick.",
 } as const;
 
 export const LANDING_PROGRESS = {

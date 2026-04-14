@@ -5,6 +5,7 @@ import { CommunitySection } from "@/components/landing/CommunitySection";
 import { DifferentiatorSection } from "@/components/landing/DifferentiatorSection";
 import { GuaranteeSection } from "@/components/landing/GuaranteeSection";
 import { HeroSection } from "@/components/landing/HeroSection";
+import { WorriesMarqueeSection } from "@/components/landing/WorriesMarqueeSection";
 import { LandingFooter } from "@/components/landing/LandingFooter";
 import { OfferSection } from "@/components/landing/OfferSection";
 import { PricingSection } from "@/components/landing/PricingSection";
@@ -16,6 +17,7 @@ export function LandingPage() {
     <div className={ui.landingPage}>
       <div className={ui.landingInner}>
         <HeroSection />
+        <WorriesMarqueeSection />
         <CoachStatsSection />
         <DifferentiatorSection />
         <OfferSection />
