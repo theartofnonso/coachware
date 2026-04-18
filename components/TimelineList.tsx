@@ -1,6 +1,11 @@
+import Link from "next/link";
+import { ui } from "@/components/ui";
+
 export type TimelineStep = {
   phase: string;
   description: string;
+  /** In-step action (e.g. link to a form). */
+  cta?: { label: string; href: string };
 };
 
 type Props = {
@@ -8,9 +13,16 @@ type Props = {
   className?: string;
   /** Use when `phase` might repeat across steps */
   stepKey?: (step: TimelineStep, index: number) => string;
+  /** When true, step CTAs open in a new tab (e.g. payment confirmation). */
+  openCtaInNewTab?: boolean;
 };
 
-export function TimelineList({ steps, className = "", stepKey }: Props) {
+export function TimelineList({
+  steps,
+  className = "",
+  stepKey,
+  openCtaInNewTab = false,
+}: Props) {
   const lastIndex = steps.length - 1;
 
   return (
@@ -42,6 +54,19 @@ export function TimelineList({ steps, className = "", stepKey }: Props) {
             <p className="mt-2 text-[0.9375rem] leading-relaxed text-zinc-600 sm:text-base">
               {step.description}
             </p>
+            {step.cta ? (
+              <div className="mt-4 print:hidden">
+                <Link
+                  href={step.cta.href}
+                  className={ui.btnPrimary}
+                  {...(openCtaInNewTab
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                >
+                  {step.cta.label}
+                </Link>
+              </div>
+            ) : null}
           </div>
         </li>
       ))}

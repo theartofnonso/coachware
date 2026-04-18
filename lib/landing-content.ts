@@ -186,6 +186,9 @@ export const LANDING_COMMUNITY = {
 } as const;
 
 export const LANDING_FOOTER = {
-  line:
-    "Nonso Biose · The real goal isn't only to get in shape. It's to keep it.",
+  /** In-app client forms (also linked after payment). */
+  links: [
+    { href: "/par-q", label: "PAR-Q" },
+    { href: "/client-agreement", label: "Client agreement" },
+  ],
 } as const;

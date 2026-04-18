@@ -17,13 +17,18 @@ export function PaymentConfirmationView({ copy }: Props) {
           <h1 className={ui.title}>{copy.headline}</h1>
         </header>
 
-        <div className={`${ui.card} space-y-4`}>
-          {copy.paragraphs.map((p) => (
-            <p key={p} className="m-0 text-[0.9375rem] leading-relaxed text-zinc-700">
-              {p}
-            </p>
-          ))}
-        </div>
+        {copy.paragraphs.length > 0 ? (
+          <div className={`${ui.card} space-y-4`}>
+            {copy.paragraphs.map((p) => (
+              <p
+                key={p}
+                className="m-0 text-[0.9375rem] leading-relaxed text-zinc-700"
+              >
+                {p}
+              </p>
+            ))}
+          </div>
+        ) : null}
 
         {copy.nextSteps && copy.nextSteps.length > 0 ? (
           <div
@@ -38,17 +43,38 @@ export function PaymentConfirmationView({ copy }: Props) {
               steps={copy.nextSteps}
               className="mt-8"
               stepKey={(step, index) => `${index}-${step.phase}`}
+              openCtaInNewTab
             />
           </div>
         ) : null}
 
         <div className={ui.actions}>
-          <Link href={copy.primaryCta.href} className={ui.btnPrimary}>
+          <Link
+            href={copy.primaryCta.href}
+            className={ui.btnSecondary}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {copy.primaryCta.label}
           </Link>
           {copy.secondaryCta ? (
-            <Link href={copy.secondaryCta.href} className={ui.btnSecondary}>
+            <Link
+              href={copy.secondaryCta.href}
+              className={ui.btnSecondary}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {copy.secondaryCta.label}
+            </Link>
+          ) : null}
+          {copy.tertiaryCta ? (
+            <Link
+              href={copy.tertiaryCta.href}
+              className={ui.btnGhost}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {copy.tertiaryCta.label}
             </Link>
           ) : null}
         </div>

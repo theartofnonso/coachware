@@ -6,7 +6,7 @@ export type ToolId =
 
 export type LeadAction = "unlock" | "send_email";
 
-/** POST /api/tool-lead JSON body */
+/** POST /api/tool-lead JSON body (`unlock` → `community_signups`; `send_email` → tool readout email only). */
 export interface ToolLeadRequestBody {
   tool: ToolId;
   action: LeadAction;
