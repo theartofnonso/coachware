@@ -1,14 +1,14 @@
 /** Shared Tailwind class strings: calm B&W / zinc palette */
 export const ui = {
   page:
-    "min-h-screen bg-zinc-50 px-4 py-8 pb-16 sm:px-6 sm:py-10 lg:px-8 lg:py-12 print:min-h-0 print:p-0",
-  inner: "mx-auto max-w-2xl",
-  header: "mb-10 border-b border-zinc-200 pb-6",
+    "min-h-screen w-full min-w-0 overflow-x-hidden bg-zinc-50 px-4 py-8 pb-16 sm:px-6 sm:py-10 lg:px-8 lg:py-12 print:min-h-0 print:p-0",
+  inner: "mx-auto w-full min-w-0 max-w-2xl",
+  header: "mb-10 min-w-0 max-w-full border-b border-zinc-200 pb-6",
   kicker:
     "mb-2 text-xs font-medium uppercase tracking-[0.12em] text-zinc-500",
   title:
-    "font-serif text-[1.75rem] font-semibold leading-tight tracking-[-0.02em] text-zinc-950 sm:text-4xl",
-  lede: "mt-3 max-w-xl text-base leading-relaxed text-zinc-600",
+    "min-w-0 max-w-full text-balance font-serif text-[1.75rem] font-semibold leading-tight tracking-[-0.02em] text-zinc-950 sm:text-4xl",
+  lede: "mt-3 min-w-0 max-w-full text-pretty text-base leading-relaxed text-zinc-600 sm:max-w-xl",
   card: "mb-5 rounded-lg border border-zinc-200 bg-white px-5 py-6 sm:px-7",
   cardTitle:
     "mb-4 text-[11px] font-medium uppercase tracking-[0.1em] text-zinc-500",
@@ -19,9 +19,9 @@ export const ui = {
   fieldError:
     "mt-1.5 text-[0.8125rem] font-medium leading-snug text-red-600",
   input:
-    "w-full rounded-lg border border-zinc-300 bg-white px-3 py-2.5 text-base text-zinc-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-950",
+    "w-full min-w-0 max-w-full rounded-lg border border-zinc-300 bg-white px-3 py-2.5 text-base text-zinc-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-950",
   select:
-    "w-full rounded-lg border border-zinc-300 bg-white px-3 py-2.5 text-base text-zinc-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-950",
+    "w-full min-w-0 max-w-full rounded-lg border border-zinc-300 bg-white px-3 py-2.5 text-base text-zinc-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-950",
   grid2: "grid grid-cols-1 gap-3 sm:grid-cols-2",
   radioGroup: "flex flex-col gap-2",
   radioRow:

@@ -8,13 +8,14 @@ import { filterPhoneInput } from "@/lib/phone-input";
 import { postParQ } from "@/lib/parq-api";
 import { validateParQForm } from "@/lib/parq-validation";
 import type { ParQFormState } from "@/types/parq";
+import { DateInput } from "@/components/DateInput";
 import { ParQYesNoRadios } from "@/components/par-q/ParQYesNoRadios";
 
 /** Tighter vertical rhythm for PAR-Q only */
 const parq = {
-  card: "mb-4 rounded-lg border border-zinc-200 bg-white px-4 py-4 sm:px-5 sm:py-5",
+  card: "mb-4 min-w-0 rounded-lg border border-zinc-200 bg-white px-4 py-4 sm:px-5 sm:py-5",
   cardTitle: "mb-3 text-[11px] font-medium uppercase tracking-[0.1em] text-zinc-500",
-  field: "mb-3 last:mb-0",
+  field: "mb-3 min-w-0 last:mb-0",
   label: "mb-1.5 block text-sm font-medium text-zinc-950",
   grid2: "grid grid-cols-1 gap-2.5 sm:grid-cols-2",
   hint: "mt-1 text-[0.8125rem] leading-snug text-zinc-500",
@@ -150,7 +151,11 @@ export function ParQForm() {
           </p>
         </header>
 
-        <form onSubmit={handleSubmit} noValidate>
+        <form
+          className="min-w-0 w-full max-w-full"
+          onSubmit={handleSubmit}
+          noValidate
+        >
           <div className={parq.card}>
             <h2 className={parq.cardTitle}>1. Personal information</h2>
             <div className={parq.field}>
@@ -193,10 +198,8 @@ export function ParQForm() {
               <label className={parq.label} htmlFor="parq-dob">
                 Date of birth
               </label>
-              <input
+              <DateInput
                 id="parq-dob"
-                type="date"
-                className={ui.input}
                 name="bday"
                 autoComplete="bday"
                 enterKeyHint="next"
@@ -465,10 +468,8 @@ export function ParQForm() {
               <label className={parq.label} htmlFor="parq-declaration-date">
                 Date
               </label>
-              <input
+              <DateInput
                 id="parq-declaration-date"
-                type="date"
-                className={ui.input}
                 name="declarationDate"
                 enterKeyHint="done"
                 value={form.declaration.date}

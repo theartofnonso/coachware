@@ -13,10 +13,10 @@ type Props = {
 export function ParQYesNoRadios({ name, legend, value, onChange }: Props) {
   return (
     <fieldset className="mb-3 min-w-0 border-0 p-0 last:mb-0">
-      <legend className="mb-1.5 block max-w-none text-sm font-medium leading-snug text-zinc-950">
+      <legend className="mb-1.5 block min-w-0 max-w-full break-words text-pretty text-sm font-medium leading-snug text-zinc-950">
         {legend}
       </legend>
-      <div className="mt-1 flex flex-row flex-wrap gap-2">
+      <div className="mt-1 flex min-w-0 max-w-full flex-row flex-wrap gap-2">
         <label className={`${ui.radioRow} min-w-0 flex-1 items-center sm:flex-none`}>
           <input
             type="radio"

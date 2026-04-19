@@ -10,13 +10,14 @@ import {
   CLIENT_AGREEMENT_SECTIONS,
 } from "@/lib/client-agreement-content";
 import { validateClientAgreementForm } from "@/lib/client-agreement-validation";
+import { DateInput } from "@/components/DateInput";
 import { filterPhoneInput } from "@/lib/phone-input";
 import type { ClientAgreementFormState } from "@/types/client-agreement";
 
 const ca = {
-  card: "mb-4 rounded-lg border border-zinc-200 bg-white px-4 py-4 sm:px-5 sm:py-5",
+  card: "mb-4 min-w-0 rounded-lg border border-zinc-200 bg-white px-4 py-4 sm:px-5 sm:py-5",
   cardTitle: "mb-3 text-[11px] font-medium uppercase tracking-[0.1em] text-zinc-500",
-  field: "mb-3 last:mb-0",
+  field: "mb-3 min-w-0 last:mb-0",
   label: "mb-1.5 block text-sm font-medium text-zinc-950",
   sectionTitle: "mb-2 font-serif text-lg font-semibold tracking-[-0.02em] text-zinc-950 sm:text-xl",
   hint: "mt-1 text-[0.8125rem] leading-snug text-zinc-500",
@@ -104,7 +105,11 @@ export function ClientAgreementForm() {
           </p>
         </header>
 
-        <form onSubmit={handleSubmit} noValidate>
+        <form
+          className="min-w-0 w-full max-w-full"
+          onSubmit={handleSubmit}
+          noValidate
+        >
           <div className={ca.card}>
             <h2 className={ca.cardTitle}>Your details</h2>
             <div className={ca.field}>
@@ -208,10 +213,8 @@ export function ClientAgreementForm() {
               <label className={ca.label} htmlFor="ca-dob">
                 Date of birth
               </label>
-              <input
+              <DateInput
                 id="ca-dob"
-                type="date"
-                className={ui.input}
                 name="bday"
                 autoComplete="bday"
                 enterKeyHint="next"
@@ -368,15 +371,16 @@ export function ClientAgreementForm() {
               <label className={ca.label} htmlFor="ca-sign-date">
                 Date
               </label>
-              <input
+              <DateInput
                 id="ca-sign-date"
-                type="date"
-                className={ui.input}
                 name="signatureDate"
                 enterKeyHint="done"
                 value={form.signatureDate}
                 onChange={(e) =>
-                  setForm((prev) => ({ ...prev, signatureDate: e.target.value }))
+                  setForm((prev) => ({
+                    ...prev,
+                    signatureDate: e.target.value,
+                  }))
                 }
               />
             </div>

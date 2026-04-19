@@ -20,6 +20,11 @@
     @apply min-h-full bg-zinc-50 text-zinc-950 antialiased;
     font-family: var(--font-sans);
   }
+
+  /* Native date controls can ignore width:100% on WebKit without this. */
+  input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+    min-width: 0;
+  }
 }
 
 @media print {
