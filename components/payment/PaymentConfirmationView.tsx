@@ -8,14 +8,23 @@ type Props = { copy: PaymentConfirmationCopy };
 export function PaymentConfirmationView({ copy }: Props) {
   const nextTitle = copy.nextStepsTitle ?? "What happens next";
   const nextId = "payment-next-heading";
+  const hasKicker = copy.kicker.trim().length > 0;
+  const hasHeadline = copy.headline.trim().length > 0;
+  const hasHeaderContent = hasKicker || hasHeadline;
 
   return (
     <div className={ui.page}>
       <div className={ui.inner}>
-        <header className={ui.header}>
-          <p className={ui.kicker}>{copy.kicker}</p>
-          <h1 className={ui.title}>{copy.headline}</h1>
-        </header>
+        {hasHeaderContent ? (
+          <header
+            className={
+              hasHeadline ? ui.header : "mb-6 min-w-0 max-w-full border-b-0 pb-0"
+            }
+          >
+            {hasKicker ? <p className={ui.kicker}>{copy.kicker}</p> : null}
+            {hasHeadline ? <h1 className={ui.title}>{copy.headline}</h1> : null}
+          </header>
+        ) : null}
 
         {copy.paragraphs.length > 0 ? (
           <div className={`${ui.card} space-y-4`}>
@@ -32,11 +41,14 @@ export function PaymentConfirmationView({ copy }: Props) {
 
         {copy.nextSteps && copy.nextSteps.length > 0 ? (
           <div
-            className="mt-10 max-w-2xl"
+            className="max-w-2xl"
             role="region"
             aria-labelledby={nextId}
           >
-            <h2 id={nextId} className={ui.landingSectionTitle}>
+            <h2
+              id={nextId}
+              className="mb-3 font-serif text-3xl font-semibold tracking-[-0.02em] text-zinc-950 sm:mb-4 sm:text-4xl"
+            >
               {nextTitle}
             </h2>
             <TimelineList

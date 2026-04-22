@@ -48,45 +48,23 @@ export const PAYMENT_CONFIRMATION_COPY: Record<
   PaymentPlanSlug,
   PaymentConfirmationCopy
 > = {
-  intro: {
-    metaTitle: "Payment confirmed",
-    metaDescription:
-      "Your payment is through. Here is what happens next with onboarding and training.",
-    kicker: "Payment received",
-    headline: "You are all set",
-    paragraphs: [],
-    nextStepsTitle: "What happens next",
-    nextSteps: POST_PAYMENT_NEXT_STEPS,
-    ...POST_PAYMENT_CTAS,
-  },
-  solo: {
-    metaTitle: "Solo plan confirmed",
-    metaDescription:
-      "Your Solo membership is confirmed. Onboarding and training are next.",
-    kicker: "Payment received",
-    headline: "Welcome to Solo",
-    paragraphs: [],
-    nextStepsTitle: "What happens next",
-    nextSteps: POST_PAYMENT_NEXT_STEPS,
-    ...POST_PAYMENT_CTAS,
-  },
   "coaching-2": {
-    metaTitle: "Coaching confirmed (2 sessions per week)",
+    metaTitle: "Coaching confirmed",
     metaDescription:
-      "Your coaching membership is confirmed. Onboarding and training are next.",
-    kicker: "Payment received",
-    headline: "Coaching is live (2 sessions per week)",
+      "Your coaching membership is confirmed. Here is what happens next with onboarding and training.",
+    kicker: "",
+    headline: "",
     paragraphs: [],
     nextStepsTitle: "What happens next",
     nextSteps: POST_PAYMENT_NEXT_STEPS,
     ...POST_PAYMENT_CTAS,
   },
   "coaching-3": {
-    metaTitle: "Coaching confirmed (3 sessions per week)",
+    metaTitle: "Coaching confirmed",
     metaDescription:
-      "Your coaching membership is confirmed. Onboarding and training are next.",
-    kicker: "Payment received",
-    headline: "Coaching is live (3 sessions per week)",
+      "Your coaching membership is confirmed. Here is what happens next with onboarding and training.",
+    kicker: "",
+    headline: "",
     paragraphs: [],
     nextStepsTitle: "What happens next",
     nextSteps: POST_PAYMENT_NEXT_STEPS,

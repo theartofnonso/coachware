@@ -1,7 +1,5 @@
 /** URL segment under `/payment/confirmed/[plan]`. Use as Stripe Checkout `success_url` path. */
 export const PAYMENT_PLAN_SLUGS = [
-  "intro",
-  "solo",
   "coaching-2",
   "coaching-3",
 ] as const;
