@@ -103,34 +103,36 @@ export const LANDING_PRICING = {
   kicker: "Pricing",
   heading: "Monthly coaching",
   intro:
-    "Two tiers, monthly only. Same coaching from me, different amounts of time on the floor. Pick the one that fits you.",
+    "Two tiers, monthly only. This is full coaching, not just sessions: training, programming, check-ins, and accountability built around your week.",
   packages: [
     {
       title: "2 sessions per week",
       description:
-        "Two coached sessions with me each week, plus a personalised plan and nutrition targets for the other days. We adjust whenever you need.",
-      price: "£280",
+        "Structured coaching for consistent progress: two coached sessions each week, personalised programming for the rest of the week, nutrition targets, and check-ins.",
+      price: "£400",
       priceSuffix: "/month",
       ctaLabel: "Get started",
       paymentHref: "https://pay.gocardless.com/BRT000501ZH29SG",
       features: [
         "2 PT sessions per week",
-        "Personalised plan + nutrition targets",
-        "Weekly check-ins",
+        "Personalised programming outside sessions",
+        "Nutrition targets + adjustments",
+        "Weekly check-ins and accountability support",
       ],
     },
     {
       title: "3 sessions per week",
       description:
-        "Three coached sessions with me each week, plus the same personalised plan and targets for the rest of the week. It evolves with you.",
-      price: "£360",
+        "High-touch coaching for faster results: three coached sessions each week, personalised programming, tighter feedback loops, and ongoing support.",
+      price: "£600",
       priceSuffix: "/month",
       ctaLabel: "Get started",
       paymentHref: "https://pay.gocardless.com/BRT000501ZRXW0V",
       features: [
         "3 PT sessions per week",
-        "Personalised plan + nutrition targets",
-        "Weekly check-ins",
+        "Personalised programming outside sessions",
+        "Nutrition targets + adjustments",
+        "High-touch check-ins and accountability support",
       ],
     },
   ],
