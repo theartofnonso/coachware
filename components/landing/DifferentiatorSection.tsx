@@ -30,7 +30,7 @@ export function DifferentiatorSection() {
 
   const quote =
     selectedGender === "woman"
-      ? "Most coaches ignore how appetite, sleep, energy, and mood change through the cycle. I help you adapt your training and nutrition so your plan keeps working long-term."
+      ? "Most coaches ignore how appetite, sleep, energy, mood, and stress change through the cycle. I help you adapt your training and nutrition so your plan keeps working long-term."
       : LANDING_DIFFERENTIATOR.quote;
 
   return (

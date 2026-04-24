@@ -49,7 +49,8 @@ export function HeroSection() {
             <strong className="font-semibold text-zinc-950">
               adapt around hormonal shifts
             </strong>
-            , because appetite, mood, and energy can change through the cycle.
+            , because appetite, mood, energy, and stress can change through the
+            cycle.
           </p>
         ) : (
           <p className={`${ui.landingBody} mt-6 max-w-xl`}>
