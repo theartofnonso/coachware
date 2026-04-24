@@ -1,7 +1,61 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { LANDING_WORRIES_MARQUEE } from "@/lib/landing-content";
 
+type GenderThemeChoice = "man" | "woman" | "other";
+const STORAGE_KEY = "coachware.gender-theme-choice";
+
+const WOMEN_WORRIES_MARQUEE_ITEMS = [
+  "I know training can feel harder at certain points in your cycle.",
+  "I know energy dips can make your usual plan feel impossible.",
+  "I know appetite changes can throw your food routine off.",
+  "I know sleep can shift and affect recovery.",
+  "I know mood changes can impact motivation and confidence.",
+  "I know you are tired of plans that ignore hormonal changes.",
+  "I know progress can feel confusing month to month.",
+  "I know you want training that adapts with your body.",
+  "I know consistency is harder when symptoms fluctuate.",
+  "I know you need a plan that works with your cycle, not against it.",
+] as const;
+
 export function WorriesMarqueeSection() {
-  const items = LANDING_WORRIES_MARQUEE.items;
+  const [selectedGender, setSelectedGender] = useState<GenderThemeChoice | null>(
+    null,
+  );
+
+  useEffect(() => {
+    function applyFromStorage() {
+      try {
+        const stored = window.localStorage.getItem(STORAGE_KEY);
+        if (stored === "man" || stored === "woman" || stored === "other") {
+          setSelectedGender(stored);
+          return;
+        }
+      } catch {
+        // Keep default marquee copy when storage is unavailable.
+      }
+      setSelectedGender(null);
+    }
+
+    function onGenderThemeChange(event: Event) {
+      const detail = (event as CustomEvent<GenderThemeChoice>).detail;
+      if (detail === "man" || detail === "woman" || detail === "other") {
+        setSelectedGender(detail);
+      }
+    }
+
+    applyFromStorage();
+    window.addEventListener("gender-theme-change", onGenderThemeChange);
+    return () => {
+      window.removeEventListener("gender-theme-change", onGenderThemeChange);
+    };
+  }, []);
+
+  const items =
+    selectedGender === "woman"
+      ? WOMEN_WORRIES_MARQUEE_ITEMS
+      : LANDING_WORRIES_MARQUEE.items;
   const track = [...items, ...items];
 
   return (

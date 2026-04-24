@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { ui } from "@/components/ui";
 import { LANDING_OFFER } from "@/lib/landing-content";
 
@@ -82,7 +85,47 @@ const PILLAR_ICONS = {
   Education: IconEducation,
 } as const;
 
+type GenderThemeChoice = "man" | "woman" | "other";
+const STORAGE_KEY = "coachware.gender-theme-choice";
+
 export function OfferSection() {
+  const [selectedGender, setSelectedGender] = useState<GenderThemeChoice | null>(
+    null,
+  );
+
+  useEffect(() => {
+    function applyFromStorage() {
+      try {
+        const stored = window.localStorage.getItem(STORAGE_KEY);
+        if (stored === "man" || stored === "woman" || stored === "other") {
+          setSelectedGender(stored);
+          return;
+        }
+      } catch {
+        // Keep default copy when storage is unavailable.
+      }
+      setSelectedGender(null);
+    }
+
+    function onGenderThemeChange(event: Event) {
+      const detail = (event as CustomEvent<GenderThemeChoice>).detail;
+      if (detail === "man" || detail === "woman" || detail === "other") {
+        setSelectedGender(detail);
+      }
+    }
+
+    applyFromStorage();
+    window.addEventListener("gender-theme-change", onGenderThemeChange);
+    return () => {
+      window.removeEventListener("gender-theme-change", onGenderThemeChange);
+    };
+  }, []);
+
+  const consultationLead =
+    selectedGender === "woman"
+      ? "I work with a small number of women who are serious about getting in shape and staying consistent, regardless of hormonal cycle changes."
+      : LANDING_OFFER.consultationLead;
+
   return (
     <section
       id="offer"
@@ -140,7 +183,7 @@ export function OfferSection() {
 
       <div className="mt-12 flex w-full flex-col gap-5 sm:flex-row sm:items-center sm:justify-between sm:gap-8 lg:mt-14">
         <p className={`${ui.landingBody} m-0 min-w-0 max-w-none sm:flex-1`}>
-          {LANDING_OFFER.consultationLead}
+          {consultationLead}
         </p>
         <a
           href={LANDING_OFFER.consultationBookingHref}

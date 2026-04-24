@@ -1,7 +1,50 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { ui } from "@/components/ui";
 import { LANDING_DIFFERENTIATOR } from "@/lib/landing-content";
 
+type GenderThemeChoice = "man" | "woman" | "other";
+const STORAGE_KEY = "coachware.gender-theme-choice";
+
 export function DifferentiatorSection() {
+  const [selectedGender, setSelectedGender] = useState<GenderThemeChoice | null>(
+    null,
+  );
+
+  useEffect(() => {
+    function applyFromStorage() {
+      try {
+        const stored = window.localStorage.getItem(STORAGE_KEY);
+        if (stored === "man" || stored === "woman" || stored === "other") {
+          setSelectedGender(stored);
+          return;
+        }
+      } catch {
+        // Keep default copy when storage is unavailable.
+      }
+      setSelectedGender(null);
+    }
+
+    function onGenderThemeChange(event: Event) {
+      const detail = (event as CustomEvent<GenderThemeChoice>).detail;
+      if (detail === "man" || detail === "woman" || detail === "other") {
+        setSelectedGender(detail);
+      }
+    }
+
+    applyFromStorage();
+    window.addEventListener("gender-theme-change", onGenderThemeChange);
+    return () => {
+      window.removeEventListener("gender-theme-change", onGenderThemeChange);
+    };
+  }, []);
+
+  const quote =
+    selectedGender === "woman"
+      ? "Most coaches ignore how appetite, sleep, energy, and mood change through the cycle. I help you adapt your training and nutrition so your plan keeps working long-term."
+      : LANDING_DIFFERENTIATOR.quote;
+
   return (
     <section
       id="approach"
@@ -16,7 +59,7 @@ export function DifferentiatorSection() {
         <p
           className={`${ui.coachNote} font-serif text-xl leading-snug sm:text-2xl`}
         >
-          {LANDING_DIFFERENTIATOR.quote}
+          {quote}
         </p>
       </blockquote>
     </section>

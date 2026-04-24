@@ -1,8 +1,46 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ui } from "@/components/ui";
 import { LANDING_COMMUNITY, LANDING_HERO, LANDING_PROFILE } from "@/lib/landing-content";
 
+type GenderThemeChoice = "man" | "woman" | "other";
+const STORAGE_KEY = "coachware.gender-theme-choice";
+
 export function HeroSection() {
+  const [selectedGender, setSelectedGender] = useState<GenderThemeChoice | null>(
+    null,
+  );
+
+  useEffect(() => {
+    function applyFromStorage() {
+      try {
+        const stored = window.localStorage.getItem(STORAGE_KEY);
+        if (stored === "man" || stored === "woman" || stored === "other") {
+          setSelectedGender(stored);
+          return;
+        }
+      } catch {
+        // Keep default copy when storage is unavailable.
+      }
+      setSelectedGender(null);
+    }
+
+    function onGenderThemeChange(event: Event) {
+      const detail = (event as CustomEvent<GenderThemeChoice>).detail;
+      if (detail === "man" || detail === "woman" || detail === "other") {
+        setSelectedGender(detail);
+      }
+    }
+
+    applyFromStorage();
+    window.addEventListener("gender-theme-change", onGenderThemeChange);
+    return () => {
+      window.removeEventListener("gender-theme-change", onGenderThemeChange);
+    };
+  }, []);
+
   return (
     <header
       id="about"
@@ -17,17 +55,27 @@ export function HeroSection() {
         >
           {LANDING_HERO.headline}
         </h1>
-        <p className={`${ui.landingBody} mt-6 max-w-xl`}>
-          {LANDING_HERO.sub.prefix}
-          <strong className="font-semibold text-zinc-950">
-            {LANDING_HERO.sub.emphasize[0]}
-          </strong>
-          ,{" "}
-          <strong className="font-semibold text-zinc-950">
-            {LANDING_HERO.sub.emphasize[1]}
-          </strong>
-          {LANDING_HERO.sub.suffix}
-        </p>
+        {selectedGender === "woman" ? (
+          <p className={`${ui.landingBody} mt-6 max-w-xl`}>
+            Training for women{" "}
+            <strong className="font-semibold text-zinc-950">
+              adapt around hormonal shifts
+            </strong>
+            , because appetite, mood, and energy can change through the cycle.
+          </p>
+        ) : (
+          <p className={`${ui.landingBody} mt-6 max-w-xl`}>
+            {LANDING_HERO.sub.prefix}
+            <strong className="font-semibold text-zinc-950">
+              {LANDING_HERO.sub.emphasize[0]}
+            </strong>
+            ,{" "}
+            <strong className="font-semibold text-zinc-950">
+              {LANDING_HERO.sub.emphasize[1]}
+            </strong>
+            {LANDING_HERO.sub.suffix}
+          </p>
+        )}
         <div className={`${ui.actions} mt-10`}>
           <a href="#community" className={ui.btnPrimary}>
             {LANDING_COMMUNITY.submitLabel}

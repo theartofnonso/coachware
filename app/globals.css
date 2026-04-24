@@ -21,10 +21,44 @@
     font-family: var(--font-sans);
   }
 
+  /* Women theme keeps default base colors for non-accented UI. */
+  body.theme-woman {
+    background-color: #fafafa;
+  }
+
   /* Native date controls can ignore width:100% on WebKit without this. */
   input[type="date"]::-webkit-datetime-edit-fields-wrapper {
     min-width: 0;
   }
+}
+
+/* Women theme accents only: buttons + icons. */
+
+body.theme-woman svg {
+  color: #9d174d;
+}
+
+body.theme-woman svg :is(path, circle, rect, line, polyline, polygon, ellipse) {
+  stroke: currentColor;
+}
+
+body.theme-woman :is(button, a).bg-zinc-950 {
+  background-color: #db2777 !important;
+  border-color: #db2777 !important;
+}
+
+body.theme-woman :is(button, a).border-zinc-950 {
+  border-color: #be185d !important;
+}
+
+body.theme-woman :is(button, a).hover\:border-zinc-300:hover,
+body.theme-woman :is(button, a).hover\:border-zinc-400:hover {
+  border-color: #93c5fd !important;
+}
+
+body.theme-woman
+  :is(button, a, input, select, textarea).focus-visible\:outline-zinc-950:focus-visible {
+  outline-color: #60a5fa !important;
 }
 
 @media print {
