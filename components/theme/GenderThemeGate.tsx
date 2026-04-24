@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-type GenderThemeChoice = "man" | "woman" | "other";
-
-const STORAGE_KEY = "coachware.gender-theme-choice";
+import {
+  GENDER_THEME_CHANGE_EVENT,
+  getRuntimeGenderChoice,
+  setRuntimeGenderChoice,
+  type GenderThemeChoice,
+} from "@/lib/gender-theme-runtime";
 
 function applyTheme(choice: GenderThemeChoice) {
   if (typeof document === "undefined") return;
@@ -15,32 +17,26 @@ function applyTheme(choice: GenderThemeChoice) {
 }
 
 export function GenderThemeGate() {
-  const [choice, setChoice] = useState<GenderThemeChoice | null>(null);
+  const [choice, setChoice] = useState<GenderThemeChoice | null>(
+    getRuntimeGenderChoice(),
+  );
 
   useEffect(() => {
-    try {
-      const stored = window.localStorage.getItem(STORAGE_KEY);
-      if (stored === "man" || stored === "woman" || stored === "other") {
-        setChoice(stored);
-        applyTheme(stored);
-      }
-    } catch {
-      // Ignore storage read issues and keep prompt interactive.
-    }
-  }, []);
+    if (choice) applyTheme(choice);
+  }, [choice]);
 
   function onSelect(next: GenderThemeChoice) {
+    setRuntimeGenderChoice(next);
     setChoice(next);
     applyTheme(next);
-    window.dispatchEvent(
-      new CustomEvent<GenderThemeChoice>("gender-theme-change", {
-        detail: next,
-      }),
-    );
     try {
-      window.localStorage.setItem(STORAGE_KEY, next);
+      window.dispatchEvent(
+        new CustomEvent(GENDER_THEME_CHANGE_EVENT, {
+          detail: next,
+        }),
+      );
     } catch {
-      // If storage is unavailable (privacy mode / blocked), still proceed.
+      // Ignore custom event issues; selection should still complete.
     }
   }
 
@@ -58,21 +54,21 @@ export function GenderThemeGate() {
         <div className="mt-5 grid gap-2">
           <button
             type="button"
-            className="rounded-md border border-zinc-950 bg-zinc-950 px-4 py-2.5 text-sm font-medium text-white hover:opacity-90"
+            className="no-gender-theme cursor-pointer rounded-md border border-zinc-950 bg-zinc-950 px-4 py-2.5 text-sm font-medium text-white hover:opacity-90"
             onClick={() => onSelect("man")}
           >
             Man
           </button>
           <button
             type="button"
-            className="rounded-md border border-pink-300 bg-pink-100 px-4 py-2.5 text-sm font-medium text-pink-900 hover:bg-pink-200"
+            className="no-gender-theme cursor-pointer rounded-md border border-pink-600 bg-pink-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-pink-700"
             onClick={() => onSelect("woman")}
           >
             Woman
           </button>
           <button
             type="button"
-            className="rounded-md border border-zinc-300 bg-white px-4 py-2.5 text-sm font-medium text-zinc-900 hover:bg-zinc-50"
+            className="no-gender-theme cursor-pointer rounded-md border border-zinc-300 bg-white px-4 py-2.5 text-sm font-medium text-zinc-900 hover:bg-zinc-50"
             onClick={() => onSelect("other")}
           >
             Prefer not to say / Other

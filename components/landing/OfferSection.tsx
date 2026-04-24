@@ -1,6 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import {
+  GENDER_THEME_CHANGE_EVENT,
+  getRuntimeGenderChoice,
+  type GenderThemeChoice,
+} from "@/lib/gender-theme-runtime";
 import { ui } from "@/components/ui";
 import { LANDING_OFFER } from "@/lib/landing-content";
 
@@ -85,28 +90,12 @@ const PILLAR_ICONS = {
   Education: IconEducation,
 } as const;
 
-type GenderThemeChoice = "man" | "woman" | "other";
-const STORAGE_KEY = "coachware.gender-theme-choice";
-
 export function OfferSection() {
   const [selectedGender, setSelectedGender] = useState<GenderThemeChoice | null>(
-    null,
+    getRuntimeGenderChoice(),
   );
 
   useEffect(() => {
-    function applyFromStorage() {
-      try {
-        const stored = window.localStorage.getItem(STORAGE_KEY);
-        if (stored === "man" || stored === "woman" || stored === "other") {
-          setSelectedGender(stored);
-          return;
-        }
-      } catch {
-        // Keep default copy when storage is unavailable.
-      }
-      setSelectedGender(null);
-    }
-
     function onGenderThemeChange(event: Event) {
       const detail = (event as CustomEvent<GenderThemeChoice>).detail;
       if (detail === "man" || detail === "woman" || detail === "other") {
@@ -114,10 +103,9 @@ export function OfferSection() {
       }
     }
 
-    applyFromStorage();
-    window.addEventListener("gender-theme-change", onGenderThemeChange);
+    window.addEventListener(GENDER_THEME_CHANGE_EVENT, onGenderThemeChange);
     return () => {
-      window.removeEventListener("gender-theme-change", onGenderThemeChange);
+      window.removeEventListener(GENDER_THEME_CHANGE_EVENT, onGenderThemeChange);
     };
   }, []);
 

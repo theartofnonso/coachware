@@ -42,17 +42,17 @@ body.theme-woman svg :is(path, circle, rect, line, polyline, polygon, ellipse) {
   stroke: currentColor;
 }
 
-body.theme-woman :is(button, a).bg-zinc-950 {
+body.theme-woman :is(button, a).bg-zinc-950:not(.no-gender-theme) {
   background-color: #db2777 !important;
   border-color: #db2777 !important;
 }
 
-body.theme-woman :is(button, a).border-zinc-950 {
+body.theme-woman :is(button, a).border-zinc-950:not(.no-gender-theme) {
   border-color: #be185d !important;
 }
 
-body.theme-woman :is(button, a).hover\:border-zinc-300:hover,
-body.theme-woman :is(button, a).hover\:border-zinc-400:hover {
+body.theme-woman :is(button, a).hover\:border-zinc-300:not(.no-gender-theme):hover,
+body.theme-woman :is(button, a).hover\:border-zinc-400:not(.no-gender-theme):hover {
   border-color: #93c5fd !important;
 }
 

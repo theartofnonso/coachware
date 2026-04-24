@@ -2,6 +2,7 @@ import { ui } from "@/components/ui";
 import { AppShowcaseSection } from "@/components/landing/AppShowcaseSection";
 import { CoachStatsSection } from "@/components/landing/CoachStatsSection";
 import { CommunitySection } from "@/components/landing/CommunitySection";
+import { CyclePhaseGuideSection } from "@/components/landing/CyclePhaseGuideSection";
 import { DifferentiatorSection } from "@/components/landing/DifferentiatorSection";
 import { GuaranteeSection } from "@/components/landing/GuaranteeSection";
 import { HeroSection } from "@/components/landing/HeroSection";
@@ -21,6 +22,7 @@ export function LandingPage() {
         <CoachStatsSection />
         <DifferentiatorSection />
         <OfferSection />
+        <CyclePhaseGuideSection />
         <PricingSection />
         <ProgressTimelineSection />
         <AppShowcaseSection />

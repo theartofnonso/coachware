@@ -98,7 +98,7 @@ export const ui = {
     "min-h-screen overflow-x-hidden bg-zinc-50 text-zinc-950 antialiased",
   landingInner: "mx-auto max-w-4xl px-4 sm:px-6 lg:px-8",
   landingSection:
-    "scroll-mt-24 border-t border-zinc-200 py-16 sm:py-20 lg:py-24 first:border-t-0 first:pt-8 sm:first:pt-10 lg:first:pt-12",
+    "scroll-mt-24 py-16 sm:py-20 lg:py-24 first:pt-8 sm:first:pt-10 lg:first:pt-12",
   landingHeroTitle:
     "font-serif text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.03em] text-zinc-950 sm:text-5xl lg:text-[3.25rem]",
   landingSectionTitle:
