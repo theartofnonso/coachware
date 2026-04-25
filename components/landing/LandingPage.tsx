@@ -11,6 +11,7 @@ import { OfferSection } from "@/components/landing/OfferSection";
 import { PricingSection } from "@/components/landing/PricingSection";
 import { ProgressTimelineSection } from "@/components/landing/ProgressTimelineSection";
 import { ToolsSection } from "@/components/landing/ToolsSection";
+import { VolumeCoachingPackagesSection } from "@/components/landing/VolumeCoachingPackagesSection";
 
 export function LandingPage() {
   return (
@@ -21,6 +22,7 @@ export function LandingPage() {
         <DifferentiatorSection />
         <OfferSection />
         <CyclePhaseGuideSection />
+        <VolumeCoachingPackagesSection />
         <PricingSection />
         <ProgressTimelineSection />
         <AppShowcaseSection />

@@ -61,6 +61,18 @@ body.theme-woman
   outline-color: #60a5fa !important;
 }
 
+.volume-package-card {
+  background-color: #09090b;
+}
+
+body.theme-woman .volume-package-card {
+  background-color: #db2777;
+}
+
+body.theme-woman .volume-package-cta {
+  color: #be185d;
+}
+
 @media print {
   body {
     @apply bg-white;

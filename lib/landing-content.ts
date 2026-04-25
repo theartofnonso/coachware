@@ -138,6 +138,26 @@ export const LANDING_PRICING = {
   ],
 } as const;
 
+export const LANDING_VOLUME_PACKAGES = {
+  heading: "Starter Coaching Packages",
+  subheading:
+    "Commit upfront, save more, and build momentum with structured 1-to-1 coaching.",
+  packages: [
+    {
+      title: "Foundation Pack (15 Sessions)",
+      price: "£1,050",
+      ctaLabel: "Buy 15 Sessions",
+      checkoutHref: "https://pay.gocardless.com/BRT01KQ29T55Q9R4G69ERAT90HWFX",
+    },
+    {
+      title: "Momentum Pack (20 Sessions)",
+      price: "£1,400",
+      ctaLabel: "Buy 20 Sessions",
+      checkoutHref: "https://pay.gocardless.com/BRT01KQ29W3HRHPZ1WP65MVHSZDCE",
+    },
+  ],
+} as const;
+
 export const LANDING_PROGRESS = {
   kicker: "The path",
   heading: "Your progress",
