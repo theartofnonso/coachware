@@ -67,17 +67,39 @@ export const LANDING_OFFER = {
       description: "Stay consistent, even when motivation drops.",
     },
     {
-      title: "Education",
+      title: "Simple tools",
       subtitle: "The Difference",
       description:
-        "Understand it well enough to never rely on guesswork again.",
+        "Dead-simple tools that do the thinking for you to get faster results.",
     },
   ],
   consultationLead:
     "I work with a small number of people who are serious about getting in shape and learning how to stay that way.",
-  consultationCtaLabel: "See if you qualify",
+  consultationCtaLabel: "Reach out directly",
   consultationBookingHref:
     "https://calendar.app.google/GzsEx1pyGuiESaxE8",
+  consultationLinks: [
+    {
+      type: "email",
+      label: "Email",
+      href: "mailto:e.nonsobiose@gmail.com",
+    },
+    {
+      type: "imessage",
+      label: "iMessage",
+      href: "sms:+447881707440",
+    },
+    {
+      type: "whatsapp",
+      label: "WhatsApp",
+      href: "https://wa.me/447881707440",
+    },
+    {
+      type: "calendar",
+      label: "Calendar",
+      href: "https://calendar.app.google/GzsEx1pyGuiESaxE8",
+    },
+  ] as const,
 } as const;
 
 export const LANDING_APP_SHOWCASE = {
@@ -100,7 +122,7 @@ export const LANDING_APP_SHOWCASE = {
 } as const;
 
 export const LANDING_PRICING = {
-  kicker: "Pricing",
+  kicker: "Ongoing coaching",
   heading: "Monthly coaching",
   intro:
     "Two tiers, monthly only. This is full coaching, not just sessions: training, programming, check-ins, and accountability built around your week.",
@@ -139,6 +161,7 @@ export const LANDING_PRICING = {
 } as const;
 
 export const LANDING_VOLUME_PACKAGES = {
+  kicker: "Starter coaching",
   heading: "Starter Coaching Packages",
   subheading:
     "Commit upfront, save more, and build momentum with structured 1-to-1 coaching.",

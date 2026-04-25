@@ -2,6 +2,12 @@
 
 import { useEffect, useState } from "react";
 import {
+  CalendarCheck2,
+  Mail,
+  MessageCircle,
+  MessageSquareText,
+} from "lucide-react";
+import {
   GENDER_THEME_CHANGE_EVENT,
   getRuntimeGenderChoice,
   type GenderThemeChoice,
@@ -64,7 +70,7 @@ function IconCoaching({ className }: { className?: string }) {
   );
 }
 
-function IconEducation({ className }: { className?: string }) {
+function IconTools({ className }: { className?: string }) {
   return (
     <svg
       className={className}
@@ -76,9 +82,8 @@ function IconEducation({ className }: { className?: string }) {
       strokeLinejoin="round"
       aria-hidden
     >
-      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z" />
-      <path d="M8 7h8M8 11h6" />
+      <rect x="4" y="4" width="16" height="16" rx="3" />
+      <path d="M8 8h3v3H8zM13 8h3M13 11h3M8 14h8M8 17h5" />
     </svg>
   );
 }
@@ -87,7 +92,7 @@ const PILLAR_ICONS = {
   Training: IconTraining,
   Nutrition: IconNutrition,
   Coaching: IconCoaching,
-  Education: IconEducation,
+  "Simple tools": IconTools,
 } as const;
 
 export function OfferSection() {
@@ -130,7 +135,7 @@ export function OfferSection() {
           const Icon =
             pillar.title in PILLAR_ICONS
               ? PILLAR_ICONS[pillar.title as keyof typeof PILLAR_ICONS]
-              : IconEducation;
+              : IconTools;
 
           return (
             <article
@@ -173,14 +178,37 @@ export function OfferSection() {
         <p className={`${ui.landingBody} m-0 min-w-0 max-w-none sm:flex-1`}>
           {consultationLead}
         </p>
-        <a
-          href={LANDING_OFFER.consultationBookingHref}
-          className={`${ui.btnPrimary} w-full shrink-0 sm:w-auto`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {LANDING_OFFER.consultationCtaLabel}
-        </a>
+        <div className="w-full shrink-0 sm:w-auto">
+          <p className="mb-2 text-sm font-semibold text-zinc-950">
+            {LANDING_OFFER.consultationCtaLabel}
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {LANDING_OFFER.consultationLinks.map((link) => {
+              const openInNewTab =
+                link.type === "whatsapp" || link.type === "calendar";
+              const Icon =
+                link.type === "email"
+                  ? Mail
+                  : link.type === "imessage"
+                    ? MessageSquareText
+                    : link.type === "whatsapp"
+                      ? MessageCircle
+                      : CalendarCheck2;
+              return (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="inline-flex min-h-10 items-center gap-2 rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm font-medium text-zinc-900 hover:border-zinc-400 hover:bg-zinc-50"
+                  target={openInNewTab ? "_blank" : undefined}
+                  rel={openInNewTab ? "noopener noreferrer" : undefined}
+                >
+                  <Icon className="size-4" aria-hidden />
+                  <span>{link.label}</span>
+                </a>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
   );

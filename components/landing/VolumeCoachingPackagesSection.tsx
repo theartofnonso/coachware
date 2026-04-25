@@ -27,12 +27,14 @@ export function VolumeCoachingPackagesSection() {
 
   return (
     <section
+      id="volume-packages"
       className={ui.landingSection}
       aria-labelledby="volume-packages-heading"
     >
+      <p className={ui.landingSectionKicker}>{LANDING_VOLUME_PACKAGES.kicker}</p>
       <h2
         id="volume-packages-heading"
-        className={ui.landingSectionTitle}
+        className={`${ui.landingSectionTitle} mt-6 sm:mt-8`}
       >
         {LANDING_VOLUME_PACKAGES.heading}
       </h2>

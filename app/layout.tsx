@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Newsreader } from "next/font/google";
 import { SiteNav } from "@/components/SiteNav";
-import { GenderThemeGate } from "@/components/theme/GenderThemeGate";
 import "./globals.css";
 
 const inter = Inter({
@@ -32,7 +31,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${newsreader.variable}`}>
       <body className={inter.className}>
-        <GenderThemeGate />
         <SiteNav />
         {children}
       </body>

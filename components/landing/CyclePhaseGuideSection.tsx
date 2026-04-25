@@ -175,7 +175,11 @@ export function CyclePhaseGuideSection() {
   if (selectedGender !== "woman") return null;
 
   return (
-    <section className={ui.landingSection} aria-labelledby="cycle-phase-guide-heading">
+    <section
+      id="cycle"
+      className={ui.landingSection}
+      aria-labelledby="cycle-phase-guide-heading"
+    >
       <p className={ui.landingSectionKicker}>Cycle-aware coaching</p>
       <h2 id="cycle-phase-guide-heading" className={ui.landingSectionTitle}>
         Training and nutrition by cycle phase
