@@ -47,6 +47,8 @@ export function SiteNav() {
     }
   }
 
+  const womenActive = genderChoice === "woman";
+
   return (
     <nav
       className="sticky top-0 z-50 border-b border-zinc-200/90 bg-zinc-50/95 backdrop-blur-sm"
@@ -68,21 +70,26 @@ export function SiteNav() {
             type="button"
             className="inline-flex h-9 items-center self-center gap-2 rounded-full border border-zinc-300 bg-white px-2.5 text-xs font-medium leading-none text-zinc-900 hover:border-zinc-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-950 md:hidden"
             onClick={toggleGenderTheme}
-            aria-label="Toggle women theme"
-            aria-pressed={genderChoice === "woman"}
+            aria-label="Toggle between default and women theme"
+            aria-pressed={womenActive}
           >
-            <span>{genderChoice === "woman" ? "Women" : "Default"}</span>
+            <span className={!womenActive ? "text-zinc-950" : "text-zinc-500"}>
+              Default
+            </span>
             <span
               className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
-                genderChoice === "woman" ? "bg-pink-600" : "bg-zinc-300"
+                womenActive ? "bg-pink-600" : "bg-zinc-300"
               }`}
               aria-hidden
             >
               <span
                 className={`inline-block size-4 transform rounded-full bg-white transition-transform ${
-                  genderChoice === "woman" ? "translate-x-4" : "translate-x-0.5"
+                  womenActive ? "translate-x-4" : "translate-x-0.5"
                 }`}
               />
+            </span>
+            <span className={womenActive ? "text-zinc-950" : "text-zinc-500"}>
+              Women
             </span>
           </button>
 
@@ -129,21 +136,26 @@ export function SiteNav() {
               type="button"
               className="inline-flex items-center gap-2 rounded-full border border-zinc-300 bg-white px-2 py-1 text-xs font-medium text-zinc-900 hover:border-zinc-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-950"
               onClick={toggleGenderTheme}
-              aria-label="Toggle women theme"
-              aria-pressed={genderChoice === "woman"}
+              aria-label="Toggle between default and women theme"
+              aria-pressed={womenActive}
             >
-              <span>{genderChoice === "woman" ? "Women" : "Default"}</span>
+              <span className={!womenActive ? "text-zinc-950" : "text-zinc-500"}>
+                Default
+              </span>
               <span
                 className={`relative inline-flex h-4 w-8 items-center rounded-full transition-colors ${
-                  genderChoice === "woman" ? "bg-pink-600" : "bg-zinc-300"
+                  womenActive ? "bg-pink-600" : "bg-zinc-300"
                 }`}
                 aria-hidden
               >
                 <span
                   className={`inline-block size-3.5 transform rounded-full bg-white transition-transform ${
-                    genderChoice === "woman" ? "translate-x-4" : "translate-x-0.5"
+                    womenActive ? "translate-x-4" : "translate-x-0.5"
                   }`}
                 />
+              </span>
+              <span className={womenActive ? "text-zinc-950" : "text-zinc-500"}>
+                Women
               </span>
             </button>
           </li>

@@ -3,10 +3,12 @@
 import { useEffect, useState } from "react";
 import {
   CalendarCheck2,
+  ExternalLink,
   Mail,
   MessageCircle,
   MessageSquareText,
 } from "lucide-react";
+import Link from "next/link";
 import {
   GENDER_THEME_CHANGE_EVENT,
   getRuntimeGenderChoice,
@@ -208,6 +210,13 @@ export function OfferSection() {
               );
             })}
           </div>
+          <Link
+            href="/contact"
+            className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-zinc-600 underline-offset-4 hover:text-zinc-950 hover:underline"
+          >
+            See all contact options
+            <ExternalLink className="size-3.5" aria-hidden />
+          </Link>
         </div>
       </div>
     </section>
