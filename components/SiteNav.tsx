@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ui } from "@/components/ui";
 import {
   GENDER_THEME_CHANGE_EVENT,
@@ -18,6 +19,7 @@ const NAV_ITEMS = [
 ] as const;
 
 export function SiteNav() {
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [genderChoice, setGenderChoice] = useState<GenderThemeChoice | null>(
     getRuntimeGenderChoice(),
@@ -48,6 +50,7 @@ export function SiteNav() {
   }
 
   const womenActive = genderChoice === "woman";
+  const hideSectionNavItems = pathname === "/contact";
 
   return (
     <nav
@@ -123,7 +126,11 @@ export function SiteNav() {
           </button>
         </div>
 
-        <ul className="m-0 hidden list-none items-center gap-5 p-0 md:flex">
+        <ul
+          className={`m-0 hidden list-none items-center gap-5 p-0 ${
+            hideSectionNavItems ? "" : "md:flex"
+          }`}
+        >
           {NAV_ITEMS.map((item) => (
             <li key={item.href}>
               <a href={item.href} className={`${ui.navLink} block leading-none`}>
@@ -131,38 +138,36 @@ export function SiteNav() {
               </a>
             </li>
           ))}
-          <li>
-            <button
-              type="button"
-              className="inline-flex items-center gap-2 rounded-full border border-zinc-300 bg-white px-2 py-1 text-xs font-medium text-zinc-900 hover:border-zinc-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-950"
-              onClick={toggleGenderTheme}
-              aria-label="Toggle between default and women theme"
-              aria-pressed={womenActive}
-            >
-              <span className={!womenActive ? "text-zinc-950" : "text-zinc-500"}>
-                Default
-              </span>
-              <span
-                className={`relative inline-flex h-4 w-8 items-center rounded-full transition-colors ${
-                  womenActive ? "bg-pink-600" : "bg-zinc-300"
-                }`}
-                aria-hidden
-              >
-                <span
-                  className={`inline-block size-3.5 transform rounded-full bg-white transition-transform ${
-                    womenActive ? "translate-x-4" : "translate-x-0.5"
-                  }`}
-                />
-              </span>
-              <span className={womenActive ? "text-zinc-950" : "text-zinc-500"}>
-                Women
-              </span>
-            </button>
-          </li>
         </ul>
+        <button
+          type="button"
+          className="hidden items-center gap-2 rounded-full border border-zinc-300 bg-white px-2 py-1 text-xs font-medium text-zinc-900 hover:border-zinc-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-950 md:inline-flex"
+          onClick={toggleGenderTheme}
+          aria-label="Toggle between default and women theme"
+          aria-pressed={womenActive}
+        >
+          <span className={!womenActive ? "text-zinc-950" : "text-zinc-500"}>
+            Default
+          </span>
+          <span
+            className={`relative inline-flex h-4 w-8 items-center rounded-full transition-colors ${
+              womenActive ? "bg-pink-600" : "bg-zinc-300"
+            }`}
+            aria-hidden
+          >
+            <span
+              className={`inline-block size-3.5 transform rounded-full bg-white transition-transform ${
+                womenActive ? "translate-x-4" : "translate-x-0.5"
+              }`}
+            />
+          </span>
+          <span className={womenActive ? "text-zinc-950" : "text-zinc-500"}>
+            Women
+          </span>
+        </button>
       </div>
 
-      {mobileOpen ? (
+      {mobileOpen && !hideSectionNavItems ? (
         <div id="mobile-primary-nav" className="border-t border-zinc-200 px-4 py-3 md:hidden">
           <ul className="m-0 list-none space-y-1 p-0">
             {NAV_ITEMS.map((item) => (
