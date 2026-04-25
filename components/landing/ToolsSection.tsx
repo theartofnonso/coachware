@@ -41,9 +41,6 @@ export function ToolsSection() {
                   </span>
                 </div>
               </div>
-              <span className="mt-3 shrink-0 text-sm font-medium text-zinc-950 underline-offset-4 group-hover:underline sm:mt-0">
-                Open
-              </span>
             </Link>
           </li>
         ))}
