@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Newsreader } from "next/font/google";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { SiteNav } from "@/components/SiteNav";
 import "./globals.css";
 
@@ -31,6 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${newsreader.variable}`}>
       <body className={inter.className}>
+        <GoogleAnalytics />
         <SiteNav />
         {children}
       </body>
