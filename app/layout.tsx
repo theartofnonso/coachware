@@ -31,8 +31,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${newsreader.variable}`}>
-      <body className={inter.className}>
+      <head>
         <GoogleAnalytics />
+      </head>
+      <body className={inter.className}>
         <SiteNav />
         {children}
       </body>
