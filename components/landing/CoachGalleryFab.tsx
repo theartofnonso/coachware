@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Camera, X } from "lucide-react";
+import { X } from "lucide-react";
+
+export const OPEN_COACH_GALLERY_EVENT = "open-coach-gallery";
 
 const COACH_IMAGES = [
   {
@@ -17,6 +19,17 @@ const COACH_IMAGES = [
 
 export function CoachGalleryFab() {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    function onOpenGallery() {
+      setIsOpen(true);
+    }
+
+    window.addEventListener(OPEN_COACH_GALLERY_EVENT, onOpenGallery);
+    return () => {
+      window.removeEventListener(OPEN_COACH_GALLERY_EVENT, onOpenGallery);
+    };
+  }, []);
 
   useEffect(() => {
     if (!isOpen) {
@@ -41,15 +54,7 @@ export function CoachGalleryFab() {
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-5 right-5 z-40 inline-flex h-12 items-center gap-2 rounded-full border border-zinc-900 bg-zinc-950 px-4 text-sm font-semibold text-white shadow-lg hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-950 sm:bottom-7 sm:right-7"
-        aria-label="Open coach photo gallery"
-      >
-        <Camera className="size-4" aria-hidden />
-        Meet coach
-      </button>
+      <div id="gallery" className="sr-only" aria-hidden />
 
       {isOpen ? (
         <div

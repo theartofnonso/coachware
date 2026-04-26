@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ui } from "@/components/ui";
+import { OPEN_COACH_GALLERY_EVENT } from "@/components/landing/CoachGalleryFab";
 import {
   GENDER_THEME_CHANGE_EVENT,
   getRuntimeGenderChoice,
@@ -16,6 +17,7 @@ const NAV_ITEMS = [
   { href: "#offer", label: "Offer" },
   { href: "#volume-packages", label: "Packages" },
   { href: "#tools", label: "Tools" },
+  { href: "#gallery", label: "Gallery" },
 ] as const;
 
 export function SiteNav() {
@@ -47,6 +49,14 @@ export function SiteNav() {
     } catch {
       // Ignore event issues; toggle still applies local theme.
     }
+  }
+
+  function onNavItemClick(href: string) {
+    if (href !== "#gallery") {
+      return;
+    }
+
+    window.dispatchEvent(new Event(OPEN_COACH_GALLERY_EVENT));
   }
 
   const womenActive = genderChoice === "woman";
@@ -133,7 +143,11 @@ export function SiteNav() {
         >
           {NAV_ITEMS.map((item) => (
             <li key={item.href}>
-              <a href={item.href} className={`${ui.navLink} block leading-none`}>
+              <a
+                href={item.href}
+                className={`${ui.navLink} block leading-none`}
+                onClick={() => onNavItemClick(item.href)}
+              >
                 {item.label}
               </a>
             </li>
@@ -175,7 +189,10 @@ export function SiteNav() {
                 <a
                   href={item.href}
                   className="block rounded-md px-2.5 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100 hover:text-zinc-950"
-                  onClick={closeMobileMenu}
+                  onClick={() => {
+                    onNavItemClick(item.href);
+                    closeMobileMenu();
+                  }}
                 >
                   {item.label}
                 </a>
