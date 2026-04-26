@@ -14,6 +14,7 @@ import {
 import { LANDING_PROFILE } from "@/lib/landing-content";
 
 const NAV_ITEMS = [
+  { href: "#offer", label: "Contact" },
   { href: "#offer", label: "Offer" },
   { href: "#volume-packages", label: "Packages" },
   { href: "#tools", label: "Tools" },
@@ -142,7 +143,7 @@ export function SiteNav() {
           }`}
         >
           {NAV_ITEMS.map((item) => (
-            <li key={item.href}>
+            <li key={`${item.href}-${item.label}`}>
               <a
                 href={item.href}
                 className={`${ui.navLink} block leading-none`}
@@ -185,7 +186,7 @@ export function SiteNav() {
         <div id="mobile-primary-nav" className="border-t border-zinc-200 px-4 py-3 md:hidden">
           <ul className="m-0 list-none space-y-1 p-0">
             {NAV_ITEMS.map((item) => (
-              <li key={item.href}>
+              <li key={`${item.href}-${item.label}`}>
                 <a
                   href={item.href}
                   className="block rounded-md px-2.5 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100 hover:text-zinc-950"

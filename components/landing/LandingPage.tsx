@@ -1,6 +1,5 @@
 import { ui } from "@/components/ui";
 import { AppShowcaseSection } from "@/components/landing/AppShowcaseSection";
-import { CommunitySection } from "@/components/landing/CommunitySection";
 import { CoachGalleryFab } from "@/components/landing/CoachGalleryFab";
 import { CyclePhaseGuideSection } from "@/components/landing/CyclePhaseGuideSection";
 import { DifferentiatorSection } from "@/components/landing/DifferentiatorSection";
@@ -29,7 +28,6 @@ export function LandingPage() {
         <AppShowcaseSection />
         <GuaranteeSection />
         <ToolsSection />
-        <CommunitySection />
         <LandingFooter />
       </div>
       <CoachGalleryFab />

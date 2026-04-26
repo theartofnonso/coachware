@@ -8,7 +8,7 @@ import {
   type GenderThemeChoice,
 } from "@/lib/gender-theme-runtime";
 import { ui } from "@/components/ui";
-import { LANDING_COMMUNITY, LANDING_HERO, LANDING_PROFILE } from "@/lib/landing-content";
+import { LANDING_HERO, LANDING_PROFILE } from "@/lib/landing-content";
 
 export function HeroSection() {
   const [selectedGender, setSelectedGender] = useState<GenderThemeChoice | null>(
@@ -66,9 +66,6 @@ export function HeroSection() {
           </p>
         )}
         <div className={`${ui.actions} mt-10`}>
-          <a href="#community" className={ui.btnPrimary}>
-            {LANDING_COMMUNITY.submitLabel}
-          </a>
           <a href="#tools" className={ui.btnGhost}>
             Explore tools
           </a>
