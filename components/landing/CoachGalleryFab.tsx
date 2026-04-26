@@ -92,9 +92,6 @@ export function CoachGalleryFab() {
                       sizes="(min-width: 640px) 40vw, 100vw"
                       priority={index === 0}
                     />
-                    <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent px-4 py-3 text-sm text-white">
-                      {image.alt}
-                    </figcaption>
                   </figure>
                 ))}
               </div>
