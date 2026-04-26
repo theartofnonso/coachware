@@ -1,5 +1,11 @@
 import Link from "next/link";
-import { LANDING_CONTACT, LANDING_FOOTER } from "@/lib/landing-content";
+import {
+  CalendarCheck2,
+  Mail,
+  MessageCircle,
+  MessageSquareText,
+} from "lucide-react";
+import { LANDING_CONTACT, LANDING_FOOTER, LANDING_OFFER } from "@/lib/landing-content";
 
 function InstagramIcon({ className }: { className?: string }) {
   return (
@@ -67,42 +73,70 @@ function FooterFormLinkIcon({ href }: { href: string }) {
 }
 
 export function LandingFooter() {
-  const linkClass =
-    "inline-flex items-center justify-center rounded-full p-2 text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-950";
-
   return (
-    <footer className="border-t border-zinc-200 py-10 sm:py-12">
+    <footer className="border-t border-zinc-200 py-6 sm:py-8">
       <div className="mx-auto max-w-2xl text-center">
-        <a
-          href={LANDING_CONTACT.instagramUrl}
-          className={linkClass}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Instagram"
-        >
-          <InstagramIcon className="size-6 shrink-0" />
-        </a>
-        <nav
-          className="mt-10 flex flex-wrap items-center justify-center gap-x-2 gap-y-2 text-sm font-medium"
-          aria-label="Client forms"
-        >
-          {LANDING_FOOTER.links.map((item, i) => (
-            <span key={item.href} className="inline-flex items-center gap-x-2">
-              {i > 0 ? (
-                <span className="select-none text-zinc-300" aria-hidden>
-                  ·
-                </span>
-              ) : null}
-              <Link
-                href={item.href}
-                className="inline-flex items-center gap-1.5 text-zinc-600 underline-offset-4 transition-colors hover:text-zinc-950 hover:underline"
-              >
-                <FooterFormLinkIcon href={item.href} />
-                {item.label}
-              </Link>
-            </span>
-          ))}
-        </nav>
+        <div className="mx-auto max-w-xl text-left sm:text-center">
+          <div className="mt-2 flex flex-wrap gap-2 sm:justify-center">
+            {LANDING_OFFER.consultationLinks.map((link) => {
+              const openInNewTab = link.type === "whatsapp" || link.type === "calendar";
+              const Icon =
+                link.type === "email"
+                  ? Mail
+                  : link.type === "imessage"
+                    ? MessageSquareText
+                    : link.type === "whatsapp"
+                      ? MessageCircle
+                      : CalendarCheck2;
+
+              return (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="inline-flex min-h-10 items-center gap-2 px-1 py-1 text-sm font-medium text-zinc-700 underline-offset-4 hover:text-zinc-950 hover:underline"
+                  target={openInNewTab ? "_blank" : undefined}
+                  rel={openInNewTab ? "noopener noreferrer" : undefined}
+                >
+                  <Icon className="size-4" aria-hidden />
+                  <span>{link.label}</span>
+                </a>
+              );
+            })}
+            <a
+              href={LANDING_CONTACT.instagramUrl}
+              className="inline-flex min-h-10 items-center gap-2 px-1 py-1 text-sm font-medium text-zinc-700 underline-offset-4 hover:text-zinc-950 hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <InstagramIcon className="size-4 shrink-0" />
+              <span>Instagram</span>
+            </a>
+          </div>
+        </div>
+
+        {LANDING_FOOTER.links.length > 0 ? (
+          <nav
+            className="mt-10 flex flex-wrap items-center justify-center gap-x-2 gap-y-2 text-sm font-medium"
+            aria-label="Client forms"
+          >
+            {LANDING_FOOTER.links.map((item, i) => (
+              <span key={item.href} className="inline-flex items-center gap-x-2">
+                {i > 0 ? (
+                  <span className="select-none text-zinc-300" aria-hidden>
+                    ·
+                  </span>
+                ) : null}
+                <Link
+                  href={item.href}
+                  className="inline-flex items-center gap-1.5 text-zinc-600 underline-offset-4 transition-colors hover:text-zinc-950 hover:underline"
+                >
+                  <FooterFormLinkIcon href={item.href} />
+                  {item.label}
+                </Link>
+              </span>
+            ))}
+          </nav>
+        ) : null}
       </div>
     </footer>
   );

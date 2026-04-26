@@ -87,7 +87,7 @@ export function CoachGalleryFab() {
                 {COACH_IMAGES.map((image, index) => (
                   <figure
                     key={image.src}
-                    className="relative min-h-[80vh] border-b border-zinc-800 sm:min-h-0 sm:overflow-hidden sm:rounded-lg sm:border sm:border-zinc-800"
+                    className="relative min-h-[80vh] border-b border-zinc-800 sm:aspect-[3/4] sm:min-h-0 sm:overflow-hidden sm:rounded-lg sm:border sm:border-zinc-800"
                   >
                     <Image
                       src={image.src}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ui } from "@/components/ui";
@@ -14,9 +14,6 @@ import {
 import { LANDING_PROFILE } from "@/lib/landing-content";
 
 const NAV_ITEMS = [
-  { href: "#offer", label: "Contact" },
-  { href: "#offer", label: "Offer" },
-  { href: "#volume-packages", label: "Packages" },
   { href: "#tools", label: "Tools" },
   { href: "#gallery", label: "Gallery" },
 ] as const;
@@ -52,11 +49,12 @@ export function SiteNav() {
     }
   }
 
-  function onNavItemClick(href: string) {
+  function onNavItemClick(event: MouseEvent<HTMLAnchorElement>, href: string) {
     if (href !== "#gallery") {
       return;
     }
 
+    event.preventDefault();
     window.dispatchEvent(new Event(OPEN_COACH_GALLERY_EVENT));
   }
 
@@ -147,7 +145,7 @@ export function SiteNav() {
               <a
                 href={item.href}
                 className={`${ui.navLink} block leading-none`}
-                onClick={() => onNavItemClick(item.href)}
+                onClick={(event) => onNavItemClick(event, item.href)}
               >
                 {item.label}
               </a>
@@ -190,8 +188,8 @@ export function SiteNav() {
                 <a
                   href={item.href}
                   className="block rounded-md px-2.5 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100 hover:text-zinc-950"
-                  onClick={() => {
-                    onNavItemClick(item.href);
+                  onClick={(event) => {
+                    onNavItemClick(event, item.href);
                     closeMobileMenu();
                   }}
                 >

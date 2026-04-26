@@ -28,8 +28,8 @@ export function LandingPage() {
         <AppShowcaseSection />
         <GuaranteeSection />
         <ToolsSection />
-        <LandingFooter />
       </div>
+      <LandingFooter />
       <CoachGalleryFab />
     </div>
   );

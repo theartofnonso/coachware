@@ -1,19 +1,3 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import {
-  CalendarCheck2,
-  ExternalLink,
-  Mail,
-  MessageCircle,
-  MessageSquareText,
-} from "lucide-react";
-import Link from "next/link";
-import {
-  GENDER_THEME_CHANGE_EVENT,
-  getRuntimeGenderChoice,
-  type GenderThemeChoice,
-} from "@/lib/gender-theme-runtime";
 import { ui } from "@/components/ui";
 import { LANDING_OFFER } from "@/lib/landing-content";
 
@@ -98,29 +82,6 @@ const PILLAR_ICONS = {
 } as const;
 
 export function OfferSection() {
-  const [selectedGender, setSelectedGender] = useState<GenderThemeChoice | null>(
-    getRuntimeGenderChoice(),
-  );
-
-  useEffect(() => {
-    function onGenderThemeChange(event: Event) {
-      const detail = (event as CustomEvent<GenderThemeChoice>).detail;
-      if (detail === "default" || detail === "woman") {
-        setSelectedGender(detail);
-      }
-    }
-
-    window.addEventListener(GENDER_THEME_CHANGE_EVENT, onGenderThemeChange);
-    return () => {
-      window.removeEventListener(GENDER_THEME_CHANGE_EVENT, onGenderThemeChange);
-    };
-  }, []);
-
-  const consultationLead =
-    selectedGender === "woman"
-      ? "I work with a small number of women who are serious about getting in shape and staying consistent, regardless of hormonal cycle changes."
-      : LANDING_OFFER.consultationLead;
-
   return (
     <section
       id="offer"
@@ -176,49 +137,6 @@ export function OfferSection() {
         })}
       </div>
 
-      <div className="mt-12 flex w-full flex-col gap-5 sm:flex-row sm:items-center sm:justify-between sm:gap-8 lg:mt-14">
-        <p className={`${ui.landingBody} m-0 min-w-0 max-w-none sm:flex-1`}>
-          {consultationLead}
-        </p>
-        <div className="w-full shrink-0 sm:w-auto">
-          <p className="mb-2 text-sm font-semibold text-zinc-950">
-            {LANDING_OFFER.consultationCtaLabel}
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {LANDING_OFFER.consultationLinks.map((link) => {
-              const openInNewTab =
-                link.type === "whatsapp" || link.type === "calendar";
-              const Icon =
-                link.type === "email"
-                  ? Mail
-                  : link.type === "imessage"
-                    ? MessageSquareText
-                    : link.type === "whatsapp"
-                      ? MessageCircle
-                      : CalendarCheck2;
-              return (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="inline-flex min-h-10 items-center gap-2 rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm font-medium text-zinc-900 hover:border-zinc-400 hover:bg-zinc-50"
-                  target={openInNewTab ? "_blank" : undefined}
-                  rel={openInNewTab ? "noopener noreferrer" : undefined}
-                >
-                  <Icon className="size-4" aria-hidden />
-                  <span>{link.label}</span>
-                </a>
-              );
-            })}
-          </div>
-          <Link
-            href="/contact"
-            className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-zinc-600 underline-offset-4 hover:text-zinc-950 hover:underline"
-          >
-            See all contact options
-            <ExternalLink className="size-3.5" aria-hidden />
-          </Link>
-        </div>
-      </div>
     </section>
   );
 }
