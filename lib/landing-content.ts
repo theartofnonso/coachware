@@ -232,5 +232,5 @@ export const LANDING_COMMUNITY = {
 
 export const LANDING_FOOTER = {
   /** In-app client forms (also linked after payment). */
-  links: [],
+  links: [] as Array<{ href: string; label: string }>,
 } as const;
