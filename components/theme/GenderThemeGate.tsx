@@ -55,9 +55,9 @@ export function GenderThemeGate() {
           <button
             type="button"
             className="no-gender-theme cursor-pointer rounded-md border border-zinc-950 bg-zinc-950 px-4 py-2.5 text-sm font-medium text-white hover:opacity-90"
-            onClick={() => onSelect("man")}
+            onClick={() => onSelect("default")}
           >
-            Man
+            Default
           </button>
           <button
             type="button"
@@ -65,13 +65,6 @@ export function GenderThemeGate() {
             onClick={() => onSelect("woman")}
           >
             Woman
-          </button>
-          <button
-            type="button"
-            className="no-gender-theme cursor-pointer rounded-md border border-zinc-300 bg-white px-4 py-2.5 text-sm font-medium text-zinc-900 hover:bg-zinc-50"
-            onClick={() => onSelect("other")}
-          >
-            Prefer not to say / Other
           </button>
         </div>
       </div>

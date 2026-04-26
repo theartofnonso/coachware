@@ -18,7 +18,7 @@ export function HeroSection() {
   useEffect(() => {
     function onGenderThemeChange(event: Event) {
       const detail = (event as CustomEvent<GenderThemeChoice>).detail;
-      if (detail === "man" || detail === "woman" || detail === "other") {
+      if (detail === "default" || detail === "woman") {
         setSelectedGender(detail);
       }
     }
@@ -66,7 +66,10 @@ export function HeroSection() {
           </p>
         )}
         <div className={`${ui.actions} mt-10`}>
-          <a href="#tools" className={ui.btnGhost}>
+          <a
+            href="#tools"
+            className="rounded-sm border border-zinc-950 bg-zinc-950 px-[1.1rem] py-2.5 text-sm font-medium tracking-wide text-white hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-950"
+          >
             Explore tools
           </a>
         </div>

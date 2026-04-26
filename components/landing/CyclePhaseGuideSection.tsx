@@ -147,7 +147,7 @@ export function CyclePhaseGuideSection() {
   useEffect(() => {
     function onGenderThemeChange(event: Event) {
       const detail = (event as CustomEvent<GenderThemeChoice>).detail;
-      if (detail === "man" || detail === "woman" || detail === "other") {
+      if (detail === "default" || detail === "woman") {
         setSelectedGender(detail);
       }
     }

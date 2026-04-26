@@ -38,7 +38,7 @@ export function SiteNav() {
   }
 
   function toggleGenderTheme() {
-    const next: GenderThemeChoice = genderChoice === "woman" ? "other" : "woman";
+    const next: GenderThemeChoice = genderChoice === "woman" ? "default" : "woman";
     setRuntimeGenderChoice(next);
     setGenderChoice(next);
     try {

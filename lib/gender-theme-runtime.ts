@@ -1,4 +1,4 @@
-export type GenderThemeChoice = "man" | "woman" | "other";
+export type GenderThemeChoice = "default" | "woman";
 
 export const GENDER_THEME_CHANGE_EVENT = "gender-theme-change";
 
